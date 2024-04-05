@@ -79,3 +79,46 @@ header {
 .subhead {
   color: #31bd7b;
 }
+
+.search {
+  margin-bottom: 5vh;
+  margin-top: 20vh;
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search input {
+
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 70%;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.336);
+  color: white;
+}
+
+.search input:focus {
+  outline: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.336);
+  color: white;
+}
+
+.search button {
+  font-size: 1.2rem;
+  background-color: #ffffff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  width: 15%;
+}
+
+.search input::placeholder {
+  color: rgba(255, 255, 255, 0.336);
+}
