@@ -48,3 +48,18 @@ body {
 .navbar-nav {
   gap: 1rem;
 }
+
+/* Header */
+
+.headerImg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: brightness(50%);
+  z-index: -1;
+  object-fit: cover;
+  object-position: 50% 50%;
+  mask-image: linear-gradient(black 90%, transparent);
+}
