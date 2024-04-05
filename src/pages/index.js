@@ -1,12 +1,9 @@
-import Footer from "@/Components/Footer";
-import Navbar from "@/Components/Navbar";
+import Layout from "@/Components/Layout";
 
 export default function Home() {
   return (
-    <>
-    <Navbar />
+    <Layout>
     <h1>Hello world!</h1>
-    <Footer />
-    </>
+    </Layout>
   )
 }
