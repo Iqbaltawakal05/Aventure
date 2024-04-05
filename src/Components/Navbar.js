@@ -7,19 +7,19 @@ export default function Navbar() {
                 <a className="navbar-brand" href="#">Navbar</a>
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">Event</a>
+                        <a className="nav-link active" aria-current="page" href="#">Event</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Features</a>
+                        <a className="nav-link" href="#">Features</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Pricing</a>
+                        <a className="nav-link" href="#">Pricing</a>
                     </li>
                     <li className="nav-item">
-                            <a href='/login' className="nav-link">Login</a>
+                        <a href='/login' className="nav-link">Login</a>
                     </li>
                     <li className="nav-item">
-                            <a href='/register' className="nav-link">Register</a>
+                        <a href='/register' className="nav-link">Register</a>
                     </li>
                 </ul>
             </div>
