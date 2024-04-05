@@ -51,6 +51,10 @@ body {
 
 /* Header */
 
+header {
+  margin-top: 10vh;
+}
+
 .headerImg img {
   position: absolute;
   top: 0;
@@ -62,4 +66,16 @@ body {
   object-fit: cover;
   object-position: 50% 50%;
   mask-image: linear-gradient(black 90%, transparent);
+}
+
+.container h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  margin-top: 10%;
+  color: white;
+}
+
+.subhead {
+  color: #31bd7b;
 }
