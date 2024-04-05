@@ -136,3 +136,110 @@ header {
 .card {
   margin-top: 5vh;
 }
+
+/* Login */
+
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.login-header img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.login-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  perspective: 2700px;
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  align-items: center;
+}
+
+.login-container img {
+  height: 30%;
+  width: 50%;
+  min-width: auto;
+  object-fit: cover;
+
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.login-form h1 {
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form h5 {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form input {
+  width: 120%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.login-btn {
+  width: 120%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: #31bd7b;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back-btn {
+  width: 120%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: red;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.link-register {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.link-register a {
+  color: #31bd7b;
+  font-weight: bold;
+  text-decoration: none;
+}
