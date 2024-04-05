@@ -4,7 +4,7 @@ export default function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg" id="navbar">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">Navbar</a>
+                <a className="navbar-brand" href="/">Aven<span className="ture">ture</span></a>
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <a className="nav-link active" aria-current="page" href="#">Event</a>

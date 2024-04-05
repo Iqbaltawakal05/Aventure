@@ -24,15 +24,24 @@ body {
   background-color: #01213b;
 }
 
+
 .nav-link,
 .navbar-brand {
   color: white;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.5vw;
+}
+
+.navbar-brand {
+  font-size: 2vw;
 }
 
 .nav-link:hover,
 .navbar-brand:hover {
+  color: #31bd7b;
+}
+
+.ture {
   color: #31bd7b;
 }
 
