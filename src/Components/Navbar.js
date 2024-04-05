@@ -16,7 +16,7 @@ export default function Navbar() {
                         <a className="nav-link" href="#">Pricing</a>
                     </li>
                     <li className="nav-item">
-                        <a href='/login' className="nav-link">Login</a>
+                        <a href='/auth/login' className="nav-link">Login</a>
                     </li>
                     <li className="nav-item">
                         <a href='/register' className="nav-link">Register</a>
