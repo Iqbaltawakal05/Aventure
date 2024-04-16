@@ -15,3 +15,5 @@ async function fetchAllPromoData() {
         return null;
     }
 }
+
+export { fetchAllPromoData }
