@@ -251,13 +251,6 @@ header {
   margin-bottom: 15vh;
 }
 
-.offers h1 {
-  font-size: 2vw;
-  font-weight: bold;
-  color: black;
-  margin-bottom: 10vh;
-}
-
 .card-body h5 {
   font-size: 1.5rem;
   font-weight: bold;
@@ -271,6 +264,30 @@ header {
 .btn-carousel button {
   border: none;
   background: none;
+}
+
+.title-promo {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.title-promo h1 {
+  font-size: 2vw;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10vh;
+  margin-top: 10vh;
+}
+
+.title-promo button {
+  border: none;
+  background: none;
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: #31bd7b;
+  cursor: pointer;
+  outline: none;
 }
 
 .img-promos img {

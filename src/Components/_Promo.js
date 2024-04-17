@@ -17,7 +17,12 @@ export default function Promo() {
 
     return (
         <div className='offers container'>
+        <div className="title-promo">
         <h1>Promos</h1>
+        <Link href={`/promo`}>
+        <button>Lihat Semua</button>
+        </Link>
+        </div>
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             {promos.map((promo, index) => (
