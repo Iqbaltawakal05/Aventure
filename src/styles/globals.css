@@ -243,3 +243,72 @@ header {
   font-weight: bold;
   text-decoration: none;
 }
+
+/* Promo */
+
+.offers {
+  padding: 1rem;
+  margin-bottom: 15vh;
+}
+
+.offers h1 {
+  font-size: 2vw;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10vh;
+}
+
+.card-body h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-body p {
+  font-size: 1.2rem;
+  font-weight: medium;
+}
+
+.btn-carousel button {
+  border: none;
+  background: none;
+}
+
+.img-promos img {
+  width: 50vw;
+  height: 50vh;
+  object-fit: cover;
+
+}
+
+.card-promos h5 {
+  text-align: center;
+  font-size: 3vw;
+  margin-bottom: 8vh;
+  margin-top: 2vh;
+  color: #31bd7b;
+
+}
+
+.card-promos p {
+  text-align: center;
+}
+
+.card-promos button {
+  display: block;
+  margin: auto;
+  margin-top: 10vh;
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: #31bd7b;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.code-promo {
+  margin-top: 2vh;
+  font-size: 2vw
+}
