@@ -1,4 +1,5 @@
 import { fetchAllPromoData } from "@/API/PromoAPI";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Promo() {
@@ -29,8 +30,11 @@ export default function Promo() {
                             <div className="col">
                             <div className="card-promos card-body">
                                 <h5 className="card-title">{promo.title}</h5>
-                                <p className="card-text">gunakan code <div className="code-promo fw-bold">{promo.promo_code}</div></p>
+                                    <p className="card-text">gunakan code <div className="code-promo fw-bold">{promo.promo_code}</div></p>
+                                
+                                <Link href={`/promo/${promo.id}`}>
                                 <button>Detail</button>
+                                </Link>
                             </div>
                             </div>
                         </div>
