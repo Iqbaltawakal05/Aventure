@@ -275,7 +275,7 @@ header {
 
 .img-promos img {
   width: 50vw;
-  height: 50vh;
+  height: 100%;
   object-fit: cover;
 
 }
