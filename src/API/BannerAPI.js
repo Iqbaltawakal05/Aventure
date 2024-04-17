@@ -1,3 +1,5 @@
+import axios from "axios";
+
 async function fetchAllbannerData() {
     try {
         const response = await axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/banners', 
@@ -13,3 +15,5 @@ async function fetchAllbannerData() {
         return null;
     }
 }
+
+export { fetchAllbannerData }

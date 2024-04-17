@@ -23,7 +23,7 @@ export default function Promo() {
         <button>Lihat Semua</button>
         </Link>
         </div>
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             {promos.map((promo, index) => (
               <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={promo.id}>
