@@ -334,3 +334,11 @@ header {
   margin-top: 2vh;
   font-size: 2vw
 }
+
+/* banner */
+
+.banner img {
+  width: 100vw;
+  height: 60vh;
+  object-fit: cover;
+}

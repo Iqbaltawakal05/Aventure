@@ -1,10 +1,10 @@
-import { fetchAllbannerData } from "@/API/BannerAPI";
 import { useState, useEffect } from "react";
+import { fetchAllbannerData } from "@/API/BannerAPI";
 
-export default function Banner() {;
+export default function Banner() {
     const [banners, setBanners] = useState([]);
 
-     useEffect(() => {
+    useEffect(() => {
         async function fetchData() {
             try {
                 const data = await fetchAllbannerData();
@@ -15,16 +15,33 @@ export default function Banner() {;
         }
 
         fetchData();
-
     }, []);
 
     return (
         <section className="banner">
-            {banners.map((banner, index) => (
-                <div className="banner-img" key={index}>
-                    <img src={banner.imageUrl} alt={`banner-${index}`} />
+            <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+                <div className="carousel-inner">
+                    {banners.map((banner, index) => (
+                        <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
+                            <img
+                                src={banner.imageUrl}
+                                className="d-block w-100"
+                                alt={`banner-${index}`}
+                            />
+                        </div>
+                    ))}
                 </div>
-            ))}
+                <div className="btn-carousel">
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Next</span>
+                </button>
+                </div>
+            </div>
         </section>
-    )
+    );
 }

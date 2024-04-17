@@ -23,8 +23,8 @@ export default function Promo() {
         <button>Lihat Semua</button>
         </Link>
         </div>
-        <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
+        <div id="promo" className="carousel slide" data-bs-ride="carousel">
+          <div className="carousel-inner">
             {promos.map((promo, index) => (
               <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={promo.id}>
                     <div className="card mb-8">
@@ -45,11 +45,11 @@ export default function Promo() {
             ))}
           </div>
           <div className="btn-carousel">
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <button className="carousel-control-prev" type="button" data-bs-target="#promo" data-bs-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true" />
               <span className="visually-hidden">Previous</span>
             </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <button className="carousel-control-next" type="button" data-bs-target="#promo" data-bs-slide="next">
               <span className="carousel-control-next-icon" aria-hidden="true" />
               <span className="visually-hidden">Next</span>
             </button>
