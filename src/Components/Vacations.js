@@ -1,4 +1,4 @@
-export default function Subheader() {
+export default function Vacations() {
     return (
         <section className="topDes container">
             <p>Top Vacation Destinations</p>
