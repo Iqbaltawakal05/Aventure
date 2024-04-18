@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import { fetchPromoById, updatePromo } from '@/API/PromoAPI';
+import { fetchPromoById, updatePromo, deletePromo } from '@/API/PromoAPI';
 import DashboardLayout from "@/Components/DashboardLayout";
 
 export default function PromoDetail() {
@@ -40,6 +40,17 @@ export default function PromoDetail() {
         }
     };
 
+    const handleDelete = async () => {
+    try {
+        if (confirm("Are you sure you want to delete this promo?")) {
+            await deletePromo(id);
+            router.push('/dashboard/promo');
+        }
+    } catch (error) {
+        console.error("Error deleting promo:", error);
+    }
+    };
+
     if (!promo) {
         return <DashboardLayout>Loading...</DashboardLayout>;
     }
@@ -54,7 +65,7 @@ export default function PromoDetail() {
                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Edit Promo
                 </button>
-                <button type="button" className="btn btn-danger">Delete</button>
+                <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
             </div>
 
             {/* modal */}
