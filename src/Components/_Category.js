@@ -1,7 +1,8 @@
 import { fetchAllCategoriesData } from "@/API/CategoryAPI";
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default function Activity({ activity }) {
+export default function Category() {
     const [Category, setCategory] = useState([]);
 
      useEffect(() => {
@@ -26,7 +27,7 @@ export default function Activity({ activity }) {
                 <div className="col-md-8">
                     <div className="card-body">
                         <h5 className="card-title">{Category.name}</h5>
-                        <Link href={`/activity/${activity.id}`}><button className="detail-button">Detail</button></Link>
+                        <Link href={`/activity/${Category.id}`}><button className="detail-button">Detail</button></Link>
                     </div>
                 </div>
             </div>
