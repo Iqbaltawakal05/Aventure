@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Category() {
-    const [Category, setCategory] = useState([]);
+    const [category, setCategory] = useState([]);
 
      useEffect(() => {
         async function fetchData() {
@@ -19,18 +19,18 @@ export default function Category() {
     }, []);
 
     return (
-        <div className="card mb-8">
-            <div className="row g-0">
-                <div className="col-md-4">
-                    <img src={Category.imageUrl} className="img-fluid rounded-start" alt="..." />
+        <>
+            {category.map((category, index) => (
+                <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
+                    <img
+                        src={category.imageUrl}
+                        className="d-block w-100"
+                        alt={`banner-${index}`}
+                    />
+                    <p>{category.name}</p>
+                    <Link href={`/category/${category.id}`}><button className="category-button">detail</button></Link>
                 </div>
-                <div className="col-md-8">
-                    <div className="card-body">
-                        <h5 className="card-title">{Category.name}</h5>
-                        <Link href={`/activity/${Category.id}`}><button className="detail-button">Detail</button></Link>
-                    </div>
-                </div>
-            </div>
-        </div>
+            ))}
+        </>
     )
 }
