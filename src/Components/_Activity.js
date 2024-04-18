@@ -20,7 +20,6 @@ export default function Activity() {
 
     return (
         <section className="container">
-            <p>Top Activity</p>
             <div className="card-group gap-3">
             {activity.map((activity, index) => (
                 <div className="card" key={activity.id}>

@@ -13,7 +13,7 @@ export default function Navbar() {
                         <a className="nav-link" href="/promo">Promo</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Pricing</a>
+                        <a className="nav-link" href="/activity">Vacations</a>
                     </li>
                     <li className="nav-item">
                         <a href='/auth/login' className="nav-link">Login</a>
