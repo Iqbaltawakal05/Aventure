@@ -45,7 +45,7 @@ export default function Register() {
                         <button type="button" className="back-btn" onClick={() => window.history.back()}>Back</button>
                         <div className="link-register">
                             <p>Already have an account?</p>
-                            <a href="/login">Login</a>
+                            <a href="/auth/login">Login</a>
                         </div>
                     </div>
                 </div>
