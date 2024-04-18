@@ -1,8 +1,8 @@
 import axios from "axios";
 
-async function fetchAllBannersData() {
+async function fetchAllCategoriesData() {
     try {
-        const response = await axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/banners', 
+        const response = await axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/categories', 
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -16,4 +16,4 @@ async function fetchAllBannersData() {
     }
 }
 
-export { fetchAllBannersData }
+export { fetchAllCategoriesData }

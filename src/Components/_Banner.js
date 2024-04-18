@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchAllbannerData } from "@/API/BannerAPI";
+import { fetchAllBannersData } from "@/API/BannerAPI";
 
 export default function Banner() {
     const [banners, setBanners] = useState([]);
@@ -7,7 +7,7 @@ export default function Banner() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const data = await fetchAllbannerData();
+                const data = await fetchAllBannersData();
                 setBanners(data);
             } catch (error) {
                 console.error(error);
