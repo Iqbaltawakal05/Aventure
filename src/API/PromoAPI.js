@@ -40,6 +40,22 @@ async function updatePromo(id, promoData) {
                 'Content-Type': 'application/json'
             }
         });
+        return response.data;
+    } catch (error) {
+        console.error('Error updating promo:', error);
+        return null;
+    }
+}
+
+async function deletePromo(id) {
+    try {
+        const response = await axios.delete(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-promo/${id}`,
+         {
+            headers: {
+                apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }
+        });
         console.log(response);
         return response.data;
     } catch (error) {
@@ -48,4 +64,4 @@ async function updatePromo(id, promoData) {
     }
 }
 
-export { fetchAllPromoData, fetchPromoById, updatePromo }
+export { fetchAllPromoData, fetchPromoById, updatePromo, deletePromo }
