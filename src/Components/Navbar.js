@@ -7,10 +7,10 @@ export default function Navbar() {
                 <a className="navbar-brand" href="/">Aven<span className="ture">ture</span></a>
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link active" aria-current="page" href="/promo">Promo</a>
+                        <a className="nav-link active" aria-current="page" href="/category">Category</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Features</a>
+                        <a className="nav-link" href="/promo">Promo</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#">Pricing</a>
