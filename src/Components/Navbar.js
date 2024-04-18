@@ -19,7 +19,7 @@ export default function Navbar() {
                         <a href='/auth/login' className="nav-link">Login</a>
                     </li>
                     <li className="nav-item">
-                        <a href='/register' className="nav-link">Register</a>
+                        <a href='/auth/register' className="nav-link">Register</a>
                     </li>
                 </ul>
             </div>
