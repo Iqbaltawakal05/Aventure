@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAllUserData } from '@/API/UserAPI';
+import { fetchAllUserData, updateUserRole } from '@/API/UserAPI';
 import DashboardLayout from '@/Components/DashboardLayout';
 
 
@@ -13,6 +13,16 @@ export default function User() {
         }
         fetchData();
     }, []);
+
+     const handleEditClick = async (userId, newRole) => {
+        try {
+            await updateUserRole(userId, newRole);
+            const updatedData = await fetchAllUserData();
+            setUserData(updatedData);
+        } catch (error) {
+            console.error('Error updating user role:', error);
+        }
+    };
 
     return (
         <DashboardLayout>
@@ -56,8 +66,8 @@ export default function User() {
                                         Edit role
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby={`dropdownMenuButton-${index}`}>
-                                        <li><button className="dropdown-item">Admin</button></li>
-                                        <li><button className="dropdown-item">User</button></li>
+                                        <li><button className="dropdown-item" onClick={() => handleEditClick(user.id, 'admin')} disabled={user.role === 'admin'}>Admin</button></li>
+                                        <li><button className="dropdown-item" onClick={() => handleEditClick(user.id, 'user')} disabled={user.role === 'user'}>User</button></li>
                                     </ul>
                                 </div>
                             </div>
