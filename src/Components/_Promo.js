@@ -5,15 +5,18 @@ import { useEffect, useState } from "react";
 export default function Promo() {
     const [promos, setPromos] = useState([]);
 
-    useEffect(() => {
-        fetchAllPromoData().then((data) => {
-            setPromos(data);
-        });
-    }, []);
+   useEffect(() => {
+        async function fetchData() {
+            try {
+                const data = await fetchAllPromoData();
+                setPromos(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-    if (!promos) {
-        return null;
-    }
+        fetchData();
+    }, []);
 
     return (
         <div className='offers container'>
