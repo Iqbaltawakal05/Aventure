@@ -1,5 +1,7 @@
 import { LoginData } from "@/API/AuthAPI";
 import React, { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { setNotif } from "@/slice/notifSlice";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -10,7 +12,7 @@ export default function Login() {
         try {
             await LoginData(email, password);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     };
 
@@ -32,7 +34,7 @@ export default function Login() {
                         <button type="button" className="back-btn" onClick={() => window.history.back()}>Back</button>
                         <div className="link-register">
                             <p>Don't have an account?</p>
-                            <a href="/register">register</a>
+                            <a href="/auth/register">register</a>
                         </div>
                     </div>
                 </div>
