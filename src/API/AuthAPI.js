@@ -41,6 +41,9 @@ async function LogoutData() {
             }
         });
 
+        localStorage.removeItem('token');
+        window.location.href = '/';
+
     } catch (error) {
         console.error('Error fetching user data:', error);
         return null;
