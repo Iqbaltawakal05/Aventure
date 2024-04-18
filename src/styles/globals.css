@@ -342,3 +342,42 @@ header {
   height: 60vh;
   object-fit: cover;
 }
+
+/* dashboard */
+
+.dashnav {
+  background-color: #f1f2f7;
+  color: #878d96;
+  width: 20%;
+  height: 100vh;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+}
+
+.dashnav-brand {
+  font-size: 5vh;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #878d96;
+}
+
+.dashnav-brand span {
+  color: #31bd7b;
+}
+
+.dash-link {
+  color: #878d96;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.dash-link.active {
+  background-color: #e4e7f4;
+  border-radius: 10px;
+  color: #31bd7b;
+}
