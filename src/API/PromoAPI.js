@@ -64,4 +64,23 @@ async function deletePromo(id) {
     }
 }
 
-export { fetchAllPromoData, fetchPromoById, updatePromo, deletePromo }
+async function createPromo(formData) {
+    try {
+        const response = await axios.post(
+            `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-promo`,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apiKey': '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                }
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw new Error('Error creating promo:', error);
+    }
+};
+
+export { fetchAllPromoData, fetchPromoById, updatePromo, deletePromo, createPromo }
