@@ -31,4 +31,20 @@ async function LoginData(email, password, setLoading) {
         }
     };
 
-export { LoginData }
+async function LogoutData() {
+    try {
+        const res = await axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/logout',
+        {
+            headers: {
+                apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }
+        });
+        
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        return null;
+    }
+}
+
+export { LoginData, LogoutData }
