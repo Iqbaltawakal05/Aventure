@@ -1,6 +1,5 @@
 import Layout from "@/Components/Layout";
 import Header from "@/Components/Header";
-import Subheader from "@/Components/Vacations";
 import Promo from "@/Components/_Promo";
 import Banner from "@/Components/_Banner";
 import Category from "@/Components/_Category";
