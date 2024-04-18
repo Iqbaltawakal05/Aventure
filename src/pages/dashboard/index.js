@@ -6,6 +6,7 @@ export default function Dashboard() {
         try {
             const res = await LogoutData();
             localStorage.removeItem('token');
+            window.location.href = '/';
             console.log(res);
         } catch (error) {
             console.error(error);
