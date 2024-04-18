@@ -17,7 +17,7 @@ export default function Promo() {
     return (
         <DashboardLayout>
             <div className="text-center">
-                <Link href="/dashboard/promo/createPromo">
+                <Link href="/dashboard/promo/create">
                 <button>Create</button>
                 </Link>
                 {promoData && promoData.map((promo, index) => (
