@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function Dashnav() {
+export default function Dashboardnavbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [activePage, setActivePage] = useState("");
 
