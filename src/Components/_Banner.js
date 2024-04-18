@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchAllBannersData } from "@/API/BannerAPI";
+import Link from "next/link";
 
 export default function Banner() {
     const [banners, setBanners] = useState([]);
@@ -23,11 +24,13 @@ export default function Banner() {
                 <div className="carousel-inner">
                     {banners.map((banner, index) => (
                         <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
+                            <Link href={`/banner/${banner.id}`}>
                             <img
                                 src={banner.imageUrl}
                                 className="d-block w-100"
                                 alt={`banner-${index}`}
                             />
+                            </Link>
                         </div>
                     ))}
                 </div>
