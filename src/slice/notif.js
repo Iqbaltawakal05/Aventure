@@ -17,6 +17,6 @@ export const notifSlice = createSlice({
     }
 });
 
-export const { setNotification, clearNotification } = notifSlice.actions;
+export const { setNotif, clearNotif } = notifSlice.actions;
 
 export default notifSlice.reducer;
