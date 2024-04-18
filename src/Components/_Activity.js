@@ -1,4 +1,6 @@
 import { fetchAllActivitiesData } from "@/API/ActivityAPI";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Activity() {
     const [activity, setActivity] = useState([]);
@@ -17,13 +19,15 @@ export default function Activity() {
         }, []);
 
     return (
-        <section className="topDes container">
+        <section className="container">
             <p>Top Activity</p>
             <div className="card-group gap-3">
             {activity.map((activity, index) => (
                 <div className="card" key={activity.id}>
-                    <img src={activity.imageUrl} alt={activity.name} />
-                    <p>{activity.name}</p>
+                    <img src={activity.imageUrls} alt={activity.name} />
+                    <p>{activity.title}</p>
+                    <p>{activity.province}</p>
+                    <p>{activity.description}</p>
                     <Link href={`/activity/${activity.id}`}><button className="category-button">detail</button></Link>
                 </div>
             ))}

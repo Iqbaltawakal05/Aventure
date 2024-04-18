@@ -3,6 +3,7 @@ import Header from "@/Components/Header";
 import Promo from "@/Components/_Promo";
 import Banner from "@/Components/_Banner";
 import Category from "@/Components/_Category";
+import Activity from "@/Components/_Activity";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Category />
       <Promo />
       <Banner />
+      <Activity />
     </Layout>
   )
 }
