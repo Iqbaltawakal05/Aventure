@@ -10,10 +10,6 @@ body {
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  transition: background-color 0.3s ease;
 }
 
 .navbar.transparent {
@@ -21,7 +17,31 @@ body {
 }
 
 .navbar.scrolled {
-  background-color: #01213b;
+  position: sticky;
+  background-color: #ffffff;
+  border-bottom: 3px solid #efefef;
+  top: 0;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.additional-info {
+  display: flex;
+  margin-top: 2vh;
+  margin-right: 10vw;
+}
+
+.additional-info a {
+  color: #000000;
+  margin-left: 20px;
+  text-decoration: none;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+}
+
+.additional-info a:hover {
+  text-decoration: underline;
 }
 
 .navbar-brand {
