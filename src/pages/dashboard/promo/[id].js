@@ -44,7 +44,7 @@ export default function PromoDetail() {
     try {
         if (confirm("Are you sure you want to delete this promo?")) {
             await deletePromo(id);
-            router.push('/dashboard/promo');
+            router.push('/dashboard/promo', '/');
         }
     } catch (error) {
         console.error("Error deleting promo:", error);

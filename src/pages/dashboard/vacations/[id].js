@@ -29,7 +29,7 @@ export default function VacationDetail() {
         e.preventDefault();
         try {
             await updateActivity(id, editedVacations);
-            router.push('/dashboard/vacations');
+            router.push('/dashboard/vacations', '/');
             router.reload()
         } catch (error) {
             console.error("Error updating vacations:", error);

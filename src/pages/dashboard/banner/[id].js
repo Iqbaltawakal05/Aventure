@@ -33,7 +33,7 @@ export default function PromoDetail() {
     const handleSubmit = async () => {
         try {
             await updateBanner(id, editedBanner);
-            router.push('/dashboard/banner');
+            router.push('/dashboard/banner', '/');
             router.reload()
         } catch (error) {
             console.error("Error updating banner:", error);
