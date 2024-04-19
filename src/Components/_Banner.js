@@ -1,9 +1,22 @@
 import { useState, useEffect } from "react";
 import { fetchAllBannersData } from "@/API/BannerAPI";
 import Link from "next/link";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Banner() {
     const [banners, setBanners] = useState([]);
+
+     const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000
+    };
 
     useEffect(() => {
         async function fetchData() {
@@ -19,11 +32,12 @@ export default function Banner() {
     }, []);
 
     return (
-        <section className="banner">
+        <section className="banner container">
             <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner">
+                <div className="slider-container">
+                    <Slider {...settings}>
                     {banners.map((banner, index) => (
-                        <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
+                        <div key={index}>
                             <Link href={`/banner/${banner.id}`}>
                             <img
                                 src={banner.imageUrl}
@@ -33,16 +47,7 @@ export default function Banner() {
                             </Link>
                         </div>
                     ))}
-                </div>
-                <div className="btn-carousel">
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                </button>
+                    </Slider>
                 </div>
             </div>
         </section>

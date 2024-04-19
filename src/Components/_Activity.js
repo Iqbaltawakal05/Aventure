@@ -9,7 +9,7 @@ export default function Activity() {
     const [activity, setActivity] = useState([]);
 
     const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
