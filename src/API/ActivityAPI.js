@@ -63,4 +63,23 @@ async function deleteActivity(id) {
     }
 }
 
-export { fetchAllActivitiesData, fetchActivityById, updateActivity, deleteActivity }
+async function createActivity(formData) {
+    try {
+        const response = await axios.post(
+            `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-activity`,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apiKey': '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                }
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw new Error('Error creating activity:', error);
+    }
+};
+
+export { fetchAllActivitiesData, fetchActivityById, updateActivity, deleteActivity, createActivity }
