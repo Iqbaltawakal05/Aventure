@@ -169,7 +169,6 @@ header {
 
 .offers {
   padding: 1rem;
-  margin-bottom: 15vh;
 }
 
 .title-promo {
@@ -207,7 +206,7 @@ header {
   background: none;
   font-size: 1.5vw;
   font-weight: bold;
-  color: #31bd7b;
+  color: #098d62;
   cursor: pointer;
   outline: none;
 }
@@ -224,7 +223,7 @@ header {
   font-size: 3vw;
   margin-bottom: 8vh;
   margin-top: 2vh;
-  color: #31bd7b;
+  color: #098d62;
 
 }
 
@@ -241,7 +240,7 @@ header {
   border: none;
   border-radius: 5px;
   outline: none;
-  background: #31bd7b;
+  background: #098d62;
   cursor: pointer;
   color: #fff;
   font-weight: bold;
@@ -254,6 +253,86 @@ header {
 .code-promo {
   margin-top: 2vh;
   font-size: 2vw
+}
+
+/* Vacations */
+
+.vacations-title{
+  margin-top: 10vh;
+  margin-bottom: 2vh;
+  display: flex;
+  justify-content: space-between;
+  color: #434343;
+  font-size: 30px;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+}
+
+.card-vacations img{
+  width: 95%;
+  height: 30vh;
+  border-radius: 17px;
+  object-fit: cover;
+}
+
+.card-vacations p{
+  font-size: 20px;
+  margin-left: 20px;
+  color: #434343;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+}
+
+.location-vacations{
+  display: flex;
+}
+
+.location-vacations p{
+  font-size: 12px; 
+}
+
+.city-vacations{
+  border-right: 1px solid #434343;
+  padding-right: 10px;
+}
+
+.province-vacations{
+  margin-left: 10px !important;
+}
+
+.price {
+  display: flex;
+}
+
+.price p{
+  font-size: 15px;
+}
+
+.original-price {
+  margin-top: 1vh;
+  text-decoration: line-through;
+  color: #888 !important;
+}
+
+.discounted-price {
+  color: white !important;
+  border: 1px solid #098d62;
+  background-color: #098d62;
+  padding: 5px;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
+.activity-button{
+  width: 95%;
+  height: 7vh;
+  border: none;
+  background-color: #098d62;
+  border-radius: 0px 0px 13px 13px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+  margin-bottom: 10vh;
+  font-size: 13px;
 }
 
 /* Login */

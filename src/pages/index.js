@@ -13,8 +13,8 @@ export default function Home() {
       <SectionHeader />
       <Category />
       <Promo />
-      <Banner />
       <Activity />
+      <Banner />
     </Layout>
   )
 }

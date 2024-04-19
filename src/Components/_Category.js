@@ -37,7 +37,7 @@ export default function Category() {
             </div>
             <Slider {...settings}>
              {category.map((category, index) => (
-                <div className="card-country">
+                <div className="card-country" key={category.id}>
                     <Link href={`/category/${category.id}`}>
                     <img src={category.imageUrl} alt={category.name} />
                     </Link>
