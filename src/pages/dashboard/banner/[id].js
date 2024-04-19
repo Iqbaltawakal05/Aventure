@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import DashboardLayout from "@/Components/DashboardLayout";
-import { fetchBannerById, updateBanner } from "@/API/BannerAPI";
+import { deleteBanner, fetchBannerById, updateBanner } from "@/API/BannerAPI";
 
 export default function PromoDetail() {
     const router = useRouter();
@@ -40,6 +40,17 @@ export default function PromoDetail() {
         }
     };
 
+    const handleDelete = async () => {
+    try {
+        if (confirm("Are you sure you want to delete this Banner?")) {
+            await deleteBanner(id);
+            router.push('/dashboard/banner');
+        }
+    } catch (error) {
+        console.error("Error deleting banner:", error);
+    }
+    };
+
     if (!banner) {
         return <DashboardLayout>Loading...</DashboardLayout>;
     }
@@ -52,7 +63,7 @@ export default function PromoDetail() {
                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Edit banner
                 </button>
-                <button type="button" className="btn btn-danger">Delete</button>
+                <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
             </div>
 
             {/* modal */}
