@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import DashboardLayout from "@/Components/DashboardLayout";
-import { fetchBannerById } from "@/API/BannerAPI";
+import { fetchBannerById, updateBanner } from "@/API/BannerAPI";
 
 export default function PromoDetail() {
     const router = useRouter();
     const { id } = router.query;
     const [banner, setBanner] = useState(null);
+    const [editedBanner, setEditedBanner] = useState(null);
 
     useEffect(() => {
         async function fetchBanner() {
             try {
-                const promoData = await fetchBannerById(id);
-                setBanner(promoData);
+                const bannerData = await fetchBannerById(id);
+                setBanner(bannerData);
+                setEditedBanner(bannerData);
             } catch (error) {
-                console.error("Error fetching promo data:", error);
+                console.error("Error fetching banner data:", error);
             }
         }
 
@@ -22,6 +24,21 @@ export default function PromoDetail() {
             fetchBanner();
         }
     }, [id]);
+
+     const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setEditedBanner({ ...editedBanner, [name]: value });
+    };
+
+    const handleSubmit = async () => {
+        try {
+            await updateBanner(id, editedBanner);
+            router.push('/dashboard/banner');
+            router.reload()
+        } catch (error) {
+            console.error("Error updating banner:", error);
+        }
+    };
 
     if (!banner) {
         return <DashboardLayout>Loading...</DashboardLayout>;
@@ -33,9 +50,35 @@ export default function PromoDetail() {
                 <img src={banner.imageUrl} />
                 <p>{banner.name}</p>
                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Edit Promo
+                    Edit banner
                 </button>
                 <button type="button" className="btn btn-danger">Delete</button>
+            </div>
+
+            {/* modal */}
+            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Edit banner</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                        </div>
+                        <div className="modal-body">
+                            <form onSubmit={handleSubmit}>
+                                <label>Name:
+                                    <input type="text" name="name" value={editedBanner.name} onChange={handleInputChange} />
+                                </label>
+                                <label>image :
+                                    <input type="text" name="imageUrl" value={editedBanner.imageUrl} onChange={handleInputChange} />
+                                </label>
+                            </form>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </DashboardLayout>
     );

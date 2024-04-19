@@ -10,7 +10,6 @@ async function fetchAllBannersData() {
         });
         return response.data.data;
     } catch (error) {
-        console.error('Error fetching user data:', error);
         return null;
     }
 }
@@ -26,14 +25,13 @@ async function fetchBannerById(id) {
         console.log(response.data);
         return response.data.data;
     } catch (error) {
-        console.error('Error fetching user data:', error);
         return null;
     }
 }
 
-async function updateBanner(id, promoData) {
+async function updateBanner(id, bannerData) {
     try {
-        const response = await axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${id}`, promoData, {
+        const response = await axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${id}`, bannerData, {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -42,7 +40,6 @@ async function updateBanner(id, promoData) {
         });
         return response.data;
     } catch (error) {
-        console.error('Error updating promo:', error);
         return null;
     }
 }
