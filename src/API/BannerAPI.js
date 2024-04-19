@@ -22,7 +22,6 @@ async function fetchBannerById(id) {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
             }
         })
-        console.log(response.data);
         return response.data.data;
     } catch (error) {
         return null;
@@ -44,4 +43,20 @@ async function updateBanner(id, bannerData) {
     }
 }
 
-export { fetchAllBannersData, fetchBannerById, updateBanner }
+async function deleteBanner(id) {
+    try {
+        const response = await axios.delete(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${id}`,
+         {
+            headers: {
+                apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }
+        });
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export { fetchAllBannersData, fetchBannerById, updateBanner, deleteBanner }
