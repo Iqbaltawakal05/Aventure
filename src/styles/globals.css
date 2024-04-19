@@ -24,16 +24,35 @@ body {
   background-color: #01213b;
 }
 
-
-.nav-link,
 .navbar-brand {
-  color: white;
-  font-weight: bold;
-  font-size: 1.5vw;
+  font-size: 4vw;
+  color: #098d62;
 }
 
-.navbar-brand {
-  font-size: 2vw;
+.nav-link {
+  color: #000000;
+  font-size: 20px;
+  margin-top: 2vh;
+}
+
+.auth-nav {
+  display: flex;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+  font-weight: lighter;
+  margin-top: 1.4vh;
+}
+
+.nav-login {
+  gap: 1vw;
+  border-right: 1px solid black;
+  padding: 0px;
+  padding-right: 1vw;
+}
+
+.nav-register {
+  gap: 1vw;
+  padding: 0px;
+  padding-left: 1vw;
 }
 
 .nav-link:hover,
@@ -41,23 +60,13 @@ body {
   color: #31bd7b;
 }
 
-.ture {
-  color: #31bd7b;
-}
-
-.navbar-nav {
-  gap: 1rem;
-}
-
 /* Header */
 
 header {
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 
 .headerImg img {
-  top: 0;
-  left: 0;
   width: 100%;
   height: 417px;
   z-index: -1;
