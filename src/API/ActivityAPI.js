@@ -78,7 +78,8 @@ async function createActivity(formData) {
         );
         return response.data;
     } catch (error) {
-        throw new Error('Error creating activity:', error);
+        console.error('Error creating activity:', error);
+        return null;
     }
 };
 
