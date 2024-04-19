@@ -43,4 +43,20 @@ async function updateCategory(id, categoryData) {
     }
 }
 
-export { fetchAllCategoriesData, fetchCategoryById, updateCategory }
+async function deleteCategory(id) {
+    try {
+        const response = await axios.delete(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-category/${id}`,
+         {
+            headers: {
+                apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }
+        });
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export { fetchAllCategoriesData, fetchCategoryById, updateCategory, deleteCategory }

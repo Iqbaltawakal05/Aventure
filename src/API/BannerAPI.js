@@ -52,7 +52,6 @@ async function deleteBanner(id) {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             }
         });
-        console.log(response);
         return response.data;
     } catch (error) {
         return null;
