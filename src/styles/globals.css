@@ -123,12 +123,16 @@ header {
 
 /* Section */
 
-.topDes {
-  margin-top: 15vh;
+.Country {
   margin-bottom: 15vh;
   font-size: 2rem;
   font-weight: bold;
   color: white;
+}
+
+.Country h1{
+  color: #434343;
+  font-size: 30px;
 }
 
 .card {
