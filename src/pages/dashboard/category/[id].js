@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import DashboardLayout from "@/Components/DashboardLayout";
-import { fetchCategoryById, updateCategory } from "@/API/CategoryAPI";
+import { deleteCategory, fetchCategoryById, updateCategory } from "@/API/CategoryAPI";
 
 
 export default function PromoDetail() {
@@ -42,6 +42,18 @@ export default function PromoDetail() {
         }
     };
 
+
+    const handleDelete = async () => {
+        try {
+            if (confirm("Are you sure you want to delete this category?")) {
+                await deleteCategory(id);
+                router.push('/dashboard/category');
+            }
+        } catch (error) {
+            console.error("Error deleting category:", error);
+        }
+    };
+
     if (!category) {
         return <DashboardLayout>Loading...</DashboardLayout>;
     }
@@ -54,7 +66,7 @@ export default function PromoDetail() {
                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Edit category
                 </button>
-                <button type="button" className="btn btn-danger">Delete</button>
+                <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
             </div>
 
             {/* modal */}
