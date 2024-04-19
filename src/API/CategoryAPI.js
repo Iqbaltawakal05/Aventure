@@ -59,4 +59,23 @@ async function deleteCategory(id) {
     }
 }
 
-export { fetchAllCategoriesData, fetchCategoryById, updateCategory, deleteCategory }
+async function createCategory(formData) {
+    try {
+        const response = await axios.post(
+            `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-category`,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apiKey': '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                }
+            }
+        );
+        return response.data;
+    } catch (error) {
+        return null;
+    }
+};
+
+export { fetchAllCategoriesData, fetchCategoryById, updateCategory, deleteCategory, createCategory }
