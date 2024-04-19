@@ -57,7 +57,7 @@ export default function Activity() {
             {activity.map((activity, index) => (
                 <div className="card-vacations" key={activity.id}>
                     <img src={activity.imageUrls} alt={activity.name} />
-                    <p>{activity.title}</p>
+                    <p className="title-vacations">{activity.title}</p>
                     <div className="location-vacations">
                     <p className="city-vacations">{activity.city}</p>
                     <p className="province-vacations">{activity.province}</p>

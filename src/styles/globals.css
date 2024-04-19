@@ -267,6 +267,10 @@ header {
   font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
 }
 
+.title-vacations{
+  margin-top: 1vh;
+}
+
 .card-vacations img{
   width: 95%;
   height: 30vh;
