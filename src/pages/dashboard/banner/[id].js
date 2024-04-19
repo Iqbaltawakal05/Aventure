@@ -25,7 +25,7 @@ export default function PromoDetail() {
         }
     }, [id]);
 
-     const handleInputChange = (e) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditedBanner({ ...editedBanner, [name]: value });
     };

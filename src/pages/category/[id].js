@@ -10,12 +10,18 @@ export default function CategoryDetail() {
     const [category, setCategory] = useState({});
 
     useEffect(() => {
-        if (id) {
-            fetchCategoryById(id).then((data) => {
-                setCategory(data);
-            });
+        async function fetchBanner() {
+            try {
+                const categoryData = await fetchCategoryById(id);
+                setCategory(categoryData);
+            } catch (error) {
+                console.error("Error fetching category data:", error);
+            }
         }
 
+        if (id) {
+            fetchBanner();
+        }
     }, [id]);
 
     return (
