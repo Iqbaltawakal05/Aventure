@@ -22,9 +22,7 @@ export default function Promo() {
         <div className='offers container'>
         <div className="title-promo">
         <h1>Promos</h1>
-        <Link href={`/promo`}>
-        <button>Lihat Semua</button>
-        </Link>
+        <a href='/promo' className='view-more'>view more</a>
         </div>
         <div id="promo" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-inner">

@@ -124,7 +124,6 @@ header {
 /* Section */
 
 .Country {
-  margin-bottom: 15vh;
   font-size: 2rem;
   font-weight: bold;
   color: white;
@@ -164,6 +163,97 @@ header {
   margin-left: 20px;
   color: #434343;
   font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+}
+
+/* Promo */
+
+.offers {
+  padding: 1rem;
+  margin-bottom: 15vh;
+}
+
+.title-promo {
+  font-size: 40px;;
+  color: #434343;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+  margin-bottom: 2vh;
+  margin-top: 10vh;
+}
+
+.card-body h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-body p {
+  font-size: 1.2rem;
+  font-weight: medium;
+}
+
+.btn-carousel button {
+  border: none;
+  background: none;
+}
+
+.title-promo {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+
+.title-promo button {
+  border: none;
+  background: none;
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: #31bd7b;
+  cursor: pointer;
+  outline: none;
+}
+
+.img-promos img {
+  width: 50vw;
+  height: 50vh;
+  object-fit: cover;
+
+}
+
+.card-promos h5 {
+  text-align: center;
+  font-size: 3vw;
+  margin-bottom: 8vh;
+  margin-top: 2vh;
+  color: #31bd7b;
+
+}
+
+.card-promos p {
+  text-align: center;
+}
+
+.card-promos button {
+  display: block;
+  margin: auto;
+  margin-top: 10vh;
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: #31bd7b;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+}
+
+.card-promos a {
+  text-decoration: none;
+}
+
+.code-promo {
+  margin-top: 2vh;
+  font-size: 2vw
 }
 
 /* Login */
@@ -271,96 +361,6 @@ header {
   color: #31bd7b;
   font-weight: bold;
   text-decoration: none;
-}
-
-/* Promo */
-
-.offers {
-  padding: 1rem;
-  margin-bottom: 15vh;
-}
-
-.card-body h5 {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.card-body p {
-  font-size: 1.2rem;
-  font-weight: medium;
-}
-
-.btn-carousel button {
-  border: none;
-  background: none;
-}
-
-.title-promo {
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-}
-
-.title-promo h1 {
-  font-size: 2vw;
-  font-weight: bold;
-  color: black;
-  margin-bottom: 10vh;
-  margin-top: 10vh;
-}
-
-.title-promo button {
-  border: none;
-  background: none;
-  font-size: 1.5vw;
-  font-weight: bold;
-  color: #31bd7b;
-  cursor: pointer;
-  outline: none;
-}
-
-.img-promos img {
-  width: 50vw;
-  height: 50vh;
-  object-fit: cover;
-
-}
-
-.card-promos h5 {
-  text-align: center;
-  font-size: 3vw;
-  margin-bottom: 8vh;
-  margin-top: 2vh;
-  color: #31bd7b;
-
-}
-
-.card-promos p {
-  text-align: center;
-}
-
-.card-promos button{
-  display: block;
-  margin: auto;
-  margin-top: 10vh;
-  width: 50%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  background: #31bd7b;
-  cursor: pointer;
-  color: #fff;
-  font-weight: bold;
-}
-
-.card-promos a{
-  text-decoration: none;
-}
-
-.code-promo {
-  margin-top: 2vh;
-  font-size: 2vw
 }
 
 /* banner */
