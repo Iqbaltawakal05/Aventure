@@ -26,7 +26,7 @@ export default function Dashboardnavbar() {
             <a className={`dash-link nav-link ${activePage === "/dashboard/banner" ? "active" : ""}`} href="/dashboard/banner">Banner</a>
             <a className={`dash-link nav-link ${activePage === "/dashboard/promo" ? "active" : ""}`} href="/dashboard/promo">Promo</a>
             <a className={`dash-link nav-link ${activePage === "/dashboard/category" ? "active" : ""}`} href="/dashboard/category">Category</a>
-            <a className={`dash-link nav-link ${activePage === "/dashboard/activity" ? "active" : ""}`} href="/dashboard/activity">Activity</a>
+            <a className={`dash-link nav-link ${activePage === "/dashboard/vacations" ? "active" : ""}`} href="/dashboard/vacations">Vacations</a>
             {isLoggedIn ? (
                 <button className="nav-link" onClick={handleLogout}>Logout</button>
             ) : (
