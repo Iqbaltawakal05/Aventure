@@ -35,7 +35,7 @@ export default function PromoDetail() {
     const handleSubmit = async () => {
         try {
             await updateCategory(id, editedCategory);
-            router.push('/dashboard/category');
+            router.push('/dashboard/category', '/');
             router.reload()
         } catch (error) {
             console.error("Error updating category:", error);

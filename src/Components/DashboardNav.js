@@ -1,3 +1,4 @@
+import { LogoutData } from "@/API/AuthAPI";
 import React, { useEffect, useState } from "react";
 
 export default function Dashboardnavbar() {
