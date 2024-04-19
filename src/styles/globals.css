@@ -113,13 +113,46 @@ header {
   box-shadow: 2px 2px 2px rgb(9, 141, 98, 0.4);
 }
 
+.links-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .links-item a{
   color: #000000;
-  font-size: 1.5vw;
-  text-decoration: none;
+  font-size: 1.2vw;
   margin-left: 20px;
   font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
   font-weight: lighter;
+  text-decoration: none;
+}
+
+.Country-link{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Offer-link{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Offer-link i{
+  margin-left: 20px;
+}
+
+.Vacations-link{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Vacations-link i {
+  margin-left: 40px;
 }
 
 .Country-links{
