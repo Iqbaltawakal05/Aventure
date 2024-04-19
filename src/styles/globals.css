@@ -130,13 +130,40 @@ header {
   color: white;
 }
 
-.Country h1{
-  color: #434343;
-  font-size: 30px;
+.card-country{
+  margin-top: 2vh;
 }
 
-.card {
-  margin-top: 5vh;
+.Country-title{
+  display: flex;
+  justify-content: space-between;
+  color: #434343;
+  font-size: 30px;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+}
+
+.view-more{
+  font-size: 20px;
+  margin-top: 20px;
+  padding-right: 17px;
+  color: #434343;
+}
+
+.view-more:hover{
+  color: #098d62;
+}
+
+.card-country img{
+  width: 95%;
+  height: 30vh;
+  border-radius: 17px;
+}
+
+.card-country p{
+  font-size: 20px;
+  margin-left: 20px;
+  color: #434343;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
 }
 
 /* Login */

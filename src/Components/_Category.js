@@ -1,9 +1,20 @@
 import { fetchAllCategoriesData } from "@/API/CategoryAPI";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Category() {
     const [category, setCategory] = useState([]);
+
+    const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4
+    };
 
      useEffect(() => {
         async function fetchData() {
@@ -20,14 +31,20 @@ export default function Category() {
 
     return (
         <section className="Country container">
+            <div className="Country-title">
             <h1>Country</h1>
+            <a href='/category' className='view-more'>view more</a>
+            </div>
+            <Slider {...settings}>
              {category.map((category, index) => (
-                <div className="card" key={category.id}>
+                <div className="card-country">
+                    <Link href={`/category/${category.id}`}>
                     <img src={category.imageUrl} alt={category.name} />
+                    </Link>
                     <p>{category.name}</p>
-                    <Link href={`/category/${category.id}`}><button className="category-button">detail</button></Link>
                 </div>
             ))}
+            </Slider>
         </section>
     )
 }
