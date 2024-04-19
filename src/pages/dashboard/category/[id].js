@@ -42,7 +42,6 @@ export default function PromoDetail() {
         }
     };
 
-
     const handleDelete = async () => {
         try {
             if (confirm("Are you sure you want to delete this category?")) {

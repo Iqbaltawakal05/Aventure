@@ -1,4 +1,4 @@
-import { fetchActivityById, updateActivity } from "@/API/ActivityAPI";
+import { deleteActivity, fetchActivityById, updateActivity } from "@/API/ActivityAPI";
 import DashboardLayout from "@/Components/DashboardLayout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -36,6 +36,17 @@ export default function VacationDetail() {
         }
     };
 
+    const handleDelete = async () => {
+    try {
+        if (confirm("Are you sure you want to delete this Vacations?")) {
+            await deleteActivity(id);
+            router.push('/dashboard/vacations', '/');
+        }
+    } catch (error) {
+        console.error("Error deleting vacations:", error);
+    }
+    };
+
     const handleInputChangeArray = (e, index) => {
     const { name, value } = e.target;
     const updatedUrls = [...editedVacations.imageUrls];
@@ -61,7 +72,7 @@ export default function VacationDetail() {
                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Edit Vacations
                 </button>
-                <button type="button" className="btn btn-danger">Delete</button>
+                <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
             </div>
 
              {/* modal */}
