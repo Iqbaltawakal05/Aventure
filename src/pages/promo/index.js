@@ -14,24 +14,30 @@ export default function Promo() {
 
     return (
         <Layout>
-            {promos.map((promo) => (
-                <div key={promo.id}>
-                    <div className="card mb-8">
-                        <div className="row g-0">
-                            <div className="img-promos col">
-                            <img src={promo.imageUrl} className="img-fluid rounded-start" alt="..." />
-                            </div>
-                            <div className="col">
-                            <div className="card-promos card-body">
-                                <h5 className="card-title">{promo.title}</h5>
-                                <p className="card-text">gunakan code <div className="code-promo fw-bold">{promo.promo_code}</div></p>
-                                <Link href={`/promo/${promo.id}`}><button className="detail-button">Detail</button></Link>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+            <section className="container">
+                <div className="back-button">
+                    <a href="/"><i class="bi bi-chevron-left"></i></a>
+                    <a href="/">Promo</a>
                 </div>
-            ))}
+            <div className="row">
+                {promos.map((promo) => (
+                    <div className="col-md-4">
+                            <div className="mb-4">
+                            <Link href={`/promo/${promo.id}`}>
+                                    <img src={promo.imageUrl} className="card-img" alt="..." />
+                            </Link>
+                                <div className="card-body">
+                                    <h5 className="card-title">{promo.title}</h5>
+                                    <div className='promo-code'>
+                                    <p>Use code :</p>
+                                    <h5>{promo.promo_code}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                ))}
+            </div>
+            </section>
         </Layout>
     )
 }

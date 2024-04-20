@@ -472,6 +472,36 @@ header {
   font-weight: lighter;
 }
 
+/* promopage */
+.card-text{
+  color: #434343;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+  font-weight: lighter;
+}
+
+.card-text p{
+  font-size: 15px;
+}
+
+.promo-code{
+  display: flex;
+  gap: 5px;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+  font-weight: lighter;
+  margin-top: 20px;
+}
+
+.promo-code p{
+  color: #434343;
+  font-size: 17px;
+}
+
+.promo-code h5{
+  color: #098d62;
+  font-size: 18px;
+  margin-top: 2.5px;
+}
+
 /* Login */
 
 .login-page {
