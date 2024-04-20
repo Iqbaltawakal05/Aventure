@@ -225,7 +225,7 @@ header {
 }
 
 .title-promo {
-  font-size: 40px;;
+  font-size: 40px;
   color: #434343;
   font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
   margin-bottom: 2vh;
@@ -273,10 +273,9 @@ header {
 
 .card-promos h5 {
   text-align: center;
-  font-size: 3vw;
+  font-size: 2vw !important;
   margin-bottom: 8vh;
   margin-top: 2vh;
-  color: #098d62;
 
 }
 
@@ -305,7 +304,8 @@ header {
 
 .code-promo {
   margin-top: 2vh;
-  font-size: 2vw
+  font-size: 2vw;
+  color: #098d62;
 }
 
 /* Vacations */
@@ -473,6 +473,7 @@ header {
 }
 
 /* promopage */
+
 .card-text{
   color: #434343;
   font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
