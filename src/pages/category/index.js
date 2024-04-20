@@ -14,23 +14,26 @@ export default function category() {
 
     return (
         <Layout>
-            {categories.map((category) => (
-                <div key={category.id}>
-                    <div className="card mb-8">
-                        <div className="row g-0">
-                            <div className="img-promos col">
-                            <img src={category.imageUrl} className="img-fluid rounded-start" alt="..." />
-                            </div>
-                            <div className="col">
-                            <div className="card-promos card-body">
-                                <h5 className="card-title">{category.name}</h5>
-                                <Link href={`/category/${category.id}`}><button className="detail-button">Detail</button></Link>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+            <section className="container">
+                <div className="back-button">
+                    <a href="/"><i class="bi bi-chevron-left"></i></a>
+                    <a href="/">City</a>
                 </div>
-            ))}
+            <div className="row">
+                {categories.map((category) => (
+                    <div className="col-md-4">
+                            <div className="card mb-4">
+                            <Link href={`/category/${category.id}`}>
+                                    <img src={category.imageUrl} className="card-img" alt="..." />
+                            </Link>
+                                <div className="card-body">
+                                    <h5 className="card-title">{category.name}</h5>
+                                </div>
+                            </div>
+                    </div>
+                ))}
+            </div>
+            </section>
         </Layout>
     )
 }

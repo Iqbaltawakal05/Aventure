@@ -436,6 +436,42 @@ header {
   font-size: 24px;
 }
 
+/* Country */
+
+.back-button{
+  display: flex;
+  margin-top: 10vh;
+  gap: 5px;
+  margin-bottom: 7vh;
+}
+
+.back-button i{
+  font-size: 2vw;
+  color: #434343;
+}
+
+.back-button a{
+  font-size: 2vw;
+  color: #434343;
+  text-decoration: none;
+}
+
+.card{
+  border-radius: 10px 10px 0px 0px;
+}
+
+.card-img{
+  border-radius: 10px 10px 0px 0px;
+  height: 35vh;
+}
+
+.card-body h5{
+  font-size: 20px;
+  color: #434343;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+  font-weight: lighter;
+}
+
 /* Login */
 
 .login-page {
