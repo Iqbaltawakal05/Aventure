@@ -1,8 +1,9 @@
 import axios from "axios";
+import BASE_URL from '@/API/baseURL';
 
 async function fetchAllActivitiesData() {
     try {
-        const response = await axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activities', 
+        const response = await axios.get(`${BASE_URL}/api/v1/activities`, 
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -17,7 +18,7 @@ async function fetchAllActivitiesData() {
 
 async function fetchActivityById(id) {
     try {
-        const response = await axios.get(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/activity/${id}`,
+        const response = await axios.get(`${BASE_URL}/api/v1/activity/${id}`,
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -32,7 +33,7 @@ async function fetchActivityById(id) {
 
 async function updateActivity(id, activityData) {
     try {
-        const response = await axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-activity/${id}`, activityData, {
+        const response = await axios.post(`${BASE_URL}/api/v1/update-activity/${id}`, activityData, {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -48,7 +49,7 @@ async function updateActivity(id, activityData) {
 
 async function deleteActivity(id) {
     try {
-        const response = await axios.delete(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-activity/${id}`,
+        const response = await axios.delete(`${BASE_URL}/api/v1/delete-activity/${id}`,
          {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -66,7 +67,7 @@ async function deleteActivity(id) {
 async function createActivity(formData) {
     try {
         const response = await axios.post(
-            `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-activity`,
+            `${BASE_URL}/api/v1/create-activity`,
             formData,
             {
                 headers: {
