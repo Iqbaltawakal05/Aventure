@@ -1,8 +1,8 @@
 import axios from "axios";
-
+import BASE_URL from "@/API/baseURL";
 async function fetchAllCategoriesData() {
     try {
-        const response = await axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/categories', 
+        const response = await axios.get(`${BASE_URL}/api/v1/categories`, 
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -16,7 +16,7 @@ async function fetchAllCategoriesData() {
 
 async function fetchCategoryById(id) {
     try {
-        const response = await axios.get(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/category/${id}`,
+        const response = await axios.get(`${BASE_URL}/api/v1/category/${id}`,
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -30,7 +30,7 @@ async function fetchCategoryById(id) {
 
 async function updateCategory(id, categoryData) {
     try {
-        const response = await axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-category/${id}`, categoryData, {
+        const response = await axios.post(`${BASE_URL}/api/v1/update-category/${id}`, categoryData, {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -45,7 +45,7 @@ async function updateCategory(id, categoryData) {
 
 async function deleteCategory(id) {
     try {
-        const response = await axios.delete(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-category/${id}`,
+        const response = await axios.delete(`${BASE_URL}/api/v1/delete-category/${id}`,
          {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -62,7 +62,7 @@ async function deleteCategory(id) {
 async function createCategory(formData) {
     try {
         const response = await axios.post(
-            `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-category`,
+            `${BASE_URL}/api/v1/create-category`,
             formData,
             {
                 headers: {
