@@ -6,21 +6,22 @@ export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordRepeat, setPasswordRepeat] = useState("");
-    const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (password !== passwordRepeat) {
-            setError("Passwords do not match");
+            alert("Passwords do not match");
             return;
         }
+
         try {
-            await RegisterData(name, email, password, passwordRepeat, setError);
+            await RegisterData(name, email, password, passwordRepeat);
+            alert("Registration successful! Please log in.");
             window.location.href = "/auth/login";
+
         } catch (error) {
             console.error("Registration error:", error);
-            setError(error);
         }
     };
 
@@ -36,12 +37,11 @@ export default function Register() {
                         <h1>Register</h1>
                         <form onSubmit={handleSubmit}>
                             <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-                            <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             <input type="password" placeholder="Repeat Password" value={passwordRepeat} onChange={(e) => setPasswordRepeat(e.target.value)} />
                             <button type="submit" className="login-btn">Register</button>
                         </form>
-                        {error && <p className="error-message">{error}</p>}
                         <button type="button" className="back-btn" onClick={() => window.history.back()}>Back</button>
                         <div className="link-register">
                             <p>Already have an account?</p>

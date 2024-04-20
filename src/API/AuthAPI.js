@@ -59,7 +59,7 @@ async function RegisterData(name, email, password, passwordRepeat) {
             password,
             passwordRepeat,
             role: "admin",
-            profilePictureUrl: "https://img.freepik.com/free-vector/cute-cat-playing-laptop-cartoon-vector-icon-illustration-animal-technology-icon-concept-isolated_138676-9529.jpg?w=740&t=st=1713417927~exp=1713418527~hmac=0673ec746df45b1ec2d1ba3a39bc6120458f637e272c245847c0f7f48e1e0912",
+            profilePictureUrl: "https://via.placeholder.com/400",
             phoneNumber: "-",
         },
         {
@@ -70,10 +70,11 @@ async function RegisterData(name, email, password, passwordRepeat) {
         });
 
         console.log(res.data)
-
+        alert(res.message);
     }
         catch (error) {
             console.log(error);
+            alert(error.response.data.message);
         }
     };
 
