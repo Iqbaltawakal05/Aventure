@@ -392,6 +392,20 @@ header {
   font-size: 13px;
 }
 
+.activitys-button{
+  width: 100%;
+  height: 7vh;
+  border: none;
+  background-color: #098d62;
+  border-radius: 0px 0px 13px 13px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+  margin-bottom: 10vh;
+  font-size: 13px;
+}
+
 /* footer */
 
 .footer {

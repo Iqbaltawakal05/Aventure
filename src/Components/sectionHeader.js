@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function SectionHeader() {
     return (
         <section className="navbar-nav links">
