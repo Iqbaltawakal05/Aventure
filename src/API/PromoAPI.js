@@ -1,8 +1,9 @@
 import axios from "axios";
+import BASE_URL from "@/API/baseURL";
 
 async function fetchAllPromoData() {
     try {
-        const response = await axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/promos', 
+        const response = await axios.get(`${BASE_URL}/api/v1/promos`, 
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -18,7 +19,7 @@ async function fetchAllPromoData() {
 
 async function fetchPromoById(id) {
     try {
-        const response = await axios.get(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/promo/${id}`,
+        const response = await axios.get(`${BASE_URL}/api/v1/promo/${id}`,
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -33,7 +34,7 @@ async function fetchPromoById(id) {
 
 async function updatePromo(id, promoData) {
     try {
-        const response = await axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-promo/${id}`, promoData, {
+        const response = await axios.post(`${BASE_URL}/api/v1/update-promo/${id}`, promoData, {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -49,7 +50,7 @@ async function updatePromo(id, promoData) {
 
 async function deletePromo(id) {
     try {
-        const response = await axios.delete(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-promo/${id}`,
+        const response = await axios.delete(`${BASE_URL}/api/v1/delete-promo/${id}`,
          {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -67,7 +68,7 @@ async function deletePromo(id) {
 async function createPromo(formData) {
     try {
         const response = await axios.post(
-            `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-promo`,
+            `${BASE_URL}/api/v1/create-promo`,
             formData,
             {
                 headers: {
