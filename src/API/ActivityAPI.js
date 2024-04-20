@@ -84,4 +84,22 @@ async function createActivity(formData) {
     }
 };
 
-export { fetchAllActivitiesData, fetchActivityById, updateActivity, deleteActivity, createActivity }
+async function fetchActivityByCategoryId(categoryId) {
+    try {
+        const response = await axios.get(`${BASE_URL}/api/v1/activities-by-category/${categoryId}`,
+        {
+            headers: {
+                apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+            },
+            params: {
+                type: 'vacation'
+            }
+        })
+        return response.data.data;
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        return null;
+    }
+}
+
+export { fetchAllActivitiesData, fetchActivityById, updateActivity, deleteActivity, createActivity, fetchActivityByCategoryId }

@@ -56,8 +56,11 @@ export default function Activity() {
             <Slider {...settings}>
             {activity.map((activity, index) => (
                 <div className="card-vacations" key={activity.id}>
-                    <img src={activity.imageUrls} alt={activity.name} />
-                    <p className="title-vacations">{activity.title}</p>
+                    <img src={activity.imageUrls[0]} alt={activity.name} />
+                    <div className="titles-vacations">
+                    <h3 className="title-vacations">{activity.title}</h3>
+                    <p className="rating-vacations">{activity.rating} <i className="bi bi-star-fill"></i></p>
+                    </div>
                     <div className="location-vacations">
                     <p className="city-vacations">{activity.city}</p>
                     <p className="province-vacations">{activity.province}</p>

@@ -32,7 +32,7 @@ export default function Category() {
     return (
         <section className="Country container">
             <div className="Country-title">
-            <h1>Country</h1>
+            <h1>Category</h1>
             <a href='/category' className='view-more'>view more</a>
             </div>
             <Slider {...settings}>

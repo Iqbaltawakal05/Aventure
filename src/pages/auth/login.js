@@ -17,14 +17,12 @@ export default function Login() {
     };
 
     return (
-        <div className="login-page">
-            <div className="login-header">
-                <img src='/wave.svg' alt="login icon"/>
+        <div className="row">
+            <div className="login-icon col-6">
+                <img src='https://img.freepik.com/free-photo/view-travel-items-assortment-still-life_23-2149617645.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1713484800&semt=sph' alt="login icon"/>
+                <p>let's Adventure</p>
             </div>
-            <div className="login-body">
-                <div className="login-container">
-                    <img src='/authIcon.svg' alt="login icon"/>
-                    <div className="login-form">
+            <div className="login-body col-6">
                         <h1>Login</h1>
                         <form onSubmit={handleSubmit}>
                             <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
@@ -38,7 +36,5 @@ export default function Login() {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     );
 }

@@ -17,7 +17,7 @@ export default function category() {
             <section className="container">
                 <div className="back-button">
                     <a href="/"><i class="bi bi-chevron-left"></i></a>
-                    <a href="/">Country</a>
+                    <a href="/">Category</a>
                 </div>
             <div className="row">
                 {categories.map((category) => (

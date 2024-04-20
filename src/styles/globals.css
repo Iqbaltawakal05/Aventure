@@ -320,6 +320,22 @@ header {
   font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
 }
 
+.titles-vacations{
+  display: flex;
+  color: #434343;
+  font-size: 20px;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+}
+
+.titles-vacations p{
+  margin-top: 3px;
+  margin-left: 120px;
+}
+
+.rating-vacations i{
+  color: gold;
+}
+
 .title-vacations{
   margin-top: 1vh;
 }
@@ -331,9 +347,8 @@ header {
   object-fit: cover;
 }
 
-.card-vacations p{
+.card-vacations h3{
   font-size: 20px;
-  margin-left: 20px;
   color: #434343;
   font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
 }
@@ -519,23 +534,19 @@ header {
 
 /* Login */
 
-.login-page {
-  min-height: 100vh;
-  width: 100%;
-  position: relative;
-}
-
-.login-header img {
+.login-icon img {
+  width: 50%;
+  height: 100vh;
+  border-right: 2px solid #434343;
   position: absolute;
-  bottom: 0;
-  left: 0;
 }
 
 .login-body {
-  min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .login-container {
@@ -601,7 +612,7 @@ header {
 }
 
 .back-btn {
-  width: 120%;
+  width: 50%;
   padding: 10px;
   border: none;
   border-radius: 5px;

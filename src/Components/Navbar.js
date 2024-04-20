@@ -24,7 +24,7 @@ export default function Navbar() {
                 <a className="navbar-brand" href="/">Aventure</a>
                     {scrolled && (
                         <div className="additional-info">
-                            <a href="/category">Country</a>
+                            <a href="/category">Category</a>
                             <a href="/promo">promo</a>
                             <a href="/activity">Vacations</a>
                         </div>

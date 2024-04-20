@@ -4,7 +4,7 @@ export default function SectionHeader() {
                 <div className="links-item">
                     <div className="Country-link">
                         <i className="bi bi-buildings-fill"></i>
-                        <a className="Country-links" href="/category">Country</a>
+                        <a className="Country-links" href="/category">Category</a>
                     </div>
                     <div className="Offer-link">
                         <i className="bi bi-cash-coin"></i>
