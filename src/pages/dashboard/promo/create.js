@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { createPromo } from '@/API/PromoAPI';
+import { UploadImg } from '@/API/UploadImgAPI';
 
 export default function CreatePromo() {
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         imageUrl: '',
+        imageFile: null,
         terms_condition: '',
         promo_code: '',
         promo_discount_price: '',
@@ -16,7 +18,19 @@ export default function CreatePromo() {
     const router = useRouter();
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, files } = e.target;
+        if (name === 'imageUrl') {
+            const file = files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                setFormData({
+                    ...formData,
+                    imageUrl: reader.result,
+                    imageFile: file
+                });
+            };
+        }
         setFormData({
             ...formData,
             [name]: name === 'promo_discount_price' || name === 'minimum_claim_price' ? parseFloat(value) : value
@@ -32,7 +46,20 @@ export default function CreatePromo() {
         }
 
         try {
-            await createPromo(formData);
+
+            const uploadResponse = await UploadImg(formData.imageFile);
+            const imageUrl = uploadResponse.data.url;
+            const promoData = {
+                title: formData.title,
+                description: formData.description,
+                imageUrl: imageUrl,
+                terms_condition: formData.terms_condition,
+                promo_code: formData.promo_code,
+                promo_discount_price: formData.promo_discount_price,
+                minimum_claim_price: formData.minimum_claim_price
+            };
+
+            await createPromo(promoData);
             router.push('/dashboard/promo');
         } catch (error) {
             console.error('Error creating promo:', error);
@@ -48,7 +75,8 @@ export default function CreatePromo() {
                 <label htmlFor="description">Description:</label><br />
                 <textarea id="description" name="description" value={formData.description} onChange={handleChange}></textarea><br />
                 <label htmlFor="imageUrl">Image URL:</label><br />
-                <input type="text" id="imageUrl" name="imageUrl" value={formData.imageUrl} onChange={handleChange} /><br />
+                <input type="file" id="imageUrl" name="imageUrl" onChange={handleChange} /><br />
+                {formData.imageUrl && <img src={formData.imageUrl} alt="Preview" style={{ maxWidth: '200px' }} />}
                 <label htmlFor="terms_condition">Terms & Conditions:</label><br />
                 <textarea id="terms_condition" name="terms_condition" value={formData.terms_condition} onChange={handleChange}></textarea><br />
                 <label htmlFor="promo_code">Promo Code:</label><br />
