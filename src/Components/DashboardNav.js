@@ -1,8 +1,8 @@
 import { LogoutData } from "@/API/AuthAPI";
 import React, { useEffect, useState } from "react";
-import { loggedUserData } from "@/API/userAPI"
 
 export default function Dashboardnavbar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [activePage, setActivePage] = useState("");
     const [userData, setUserData] = useState(null);
 
@@ -18,6 +18,15 @@ export default function Dashboardnavbar() {
         
         fetchData();
     }, []);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setIsLoggedIn(true);
+        }
+        setActivePage(window.location.pathname);
+    }, []);
+
     const handleLogout = async () => {
         try {
             const res = await LogoutData();
@@ -33,15 +42,7 @@ export default function Dashboardnavbar() {
             <a className={`dash-link nav-link ${activePage === "/dashboard/promo" ? "active" : ""}`} href="/dashboard/promo">Promo</a>
             <a className={`dash-link nav-link ${activePage === "/dashboard/category" ? "active" : ""}`} href="/dashboard/category">Category</a>
             <a className={`dash-link nav-link ${activePage === "/dashboard/vacations" ? "active" : ""}`} href="/dashboard/vacations">Vacations</a>
-            {userData && (
-                <div className='profile-nav'>
-                    <img src={userData.profilePictureUrl} alt="profile picture" />
-                    <h1>{userData.name}</h1>
-                </div>
-            )}
                 <button className="nav-link" onClick={handleLogout}>Logout</button>
-            <div>
-            </div>
         </div>
     );
 }
