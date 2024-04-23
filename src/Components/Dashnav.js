@@ -18,11 +18,11 @@ export default function DashNav() {
     }, []);
 
     return (
-        <div>
+        <div className='prolifenavb'>
             {loggeduser && (
-                <div>
+                <div className='profileNav'>
                     <img src={loggeduser.profilePictureUrl} alt="profile picture" />
-                    <h1>{loggeduser.name}</h1>
+                    <a href='/profile'>{loggeduser.name}</a>
                 </div>
             )}
         </div>
