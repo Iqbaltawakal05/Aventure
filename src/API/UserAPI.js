@@ -50,5 +50,21 @@ async function loggedUserData() {
     }
 }
 
+async function updateProfile(profileData) {
+    try {
+        const response = await axios.post(`${BASE_URL}/api/v1/update-profile`, profileData, {
+            headers: {
+                apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        console.log(response.data)
+        return response.data;
+    } catch (error) {
+        console.error('Error updating promo:', error);
+        return null;
+    }
+}
 
-export { fetchAllUserData, updateUserRole, loggedUserData }
+export { fetchAllUserData, updateUserRole, loggedUserData, updateProfile }
