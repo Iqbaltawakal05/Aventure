@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import DashboardLayout from "@/Components/DashboardLayout";
 import { deleteCategory, fetchCategoryById, updateCategory } from "@/API/CategoryAPI";
-
+import { UploadImg } from '@/API/UploadImgAPI';
 
 export default function PromoDetail() {
     const router = useRouter();
     const { id } = router.query;
     const [category, setCategory] = useState(null);
     const [editedCategory, setEditedCategory] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
 
     useEffect(() => {
         async function fetchCategory() {
@@ -28,13 +29,30 @@ export default function PromoDetail() {
 
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setEditedCategory({ ...editedCategory, [name]: value });
+        const { name, value, files } = e.target;
+        if (name === "imageUrl") {
+            const file = files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                setEditedCategory({ ...editedCategory, imageUrl: reader.result });
+                setImageFile(file);
+            };
+        } else {
+            setEditedCategory({ ...editedCategory, [name]: value });
+        };
     };
 
     const handleSubmit = async () => {
         try {
-            await updateCategory(id, editedCategory);
+            const uploadResponse = await UploadImg(imageFile);
+            const imageUrl = uploadResponse.data.url;
+            const categoryData = {
+                name: editedCategory.name,
+                imageUrl: imageUrl,
+            };
+
+            await updateCategory(id, categoryData);
             router.push('/dashboard/category', '/');
             router.reload()
         } catch (error) {
@@ -82,7 +100,8 @@ export default function PromoDetail() {
                                     <input type="text" name="name" value={editedCategory.name} onChange={handleInputChange} />
                                 </label>
                                 <label>image :
-                                    <input type="text" name="imageUrl" value={editedCategory.imageUrl} onChange={handleInputChange} />
+                                    <input type="file" id="imageUrl" name="imageUrl" onChange={handleInputChange} /><br />
+                                    {editedCategory.imageUrl && <img src={editedCategory.imageUrl} alt="Preview" style={{ maxWidth: '200px' }} />}
                                 </label>
                             </form>
                         </div>
