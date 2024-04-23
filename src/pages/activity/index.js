@@ -58,27 +58,33 @@ export default function category() {
                         ))}
                     </select>
                 </div>
-            <div className="row">
-                {filteredActivities.map((activity) => (
-                    <div className="col-md-4">
-                            <div className="mb-4">
+                <div className="row">
+                    {filteredActivities.length > 0 ? (
+                        filteredActivities.map((activity) => (
+                            <div className="col-md-4" key={activity.id}>
+                                <div className="mb-4">
                                     <img src={activity.imageUrls} className="card-img" alt="..." />
-                                <div className="card-body">
-                                    <h5 className="card-title">{activity.title}</h5>
-                                    <div className="location-vacations">
-                                        <p className="city-vacations">{activity.city}</p>
-                                        <p className="province-vacations">{activity.province}</p>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{activity.title}</h5>
+                                        <div className="location-vacations">
+                                            <p className="city-vacations">{activity.city}</p>
+                                            <p className="province-vacations">{activity.province}</p>
+                                        </div>
+                                        <div className="price">
+                                            <p className="original-price">{formatPrice(activity.price)}</p>
+                                            <p className="discounted-price">{formatPrice(activity.price_discount)}</p>
+                                        </div>
                                     </div>
-                                    <div className="price">
-                                        <p className="original-price">{formatPrice(activity.price)}</p>
-                                        <p className="discounted-price">{formatPrice(activity.price_discount)}</p>
-                                    </div>
-                                </div>
                                     <Link href={`/activity/${activity.id}`}><button className="activitys-button">See Detail</button></Link>
+                                </div>
                             </div>
-                    </div>
-                ))}
-            </div>
+                        ))
+                    ) : (
+                        <div className="col-md-12">
+                            <p>No activities found</p>
+                        </div>
+                    )}
+                </div>
             </section>
         </Layout>
     )
