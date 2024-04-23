@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllUserData, updateUserRole } from '@/API/UserAPI';
 import DashboardLayout from '@/Components/DashboardLayout';
+import Layout from '@/Components/Layout';
 
 
 export default function User() {
@@ -26,6 +27,7 @@ export default function User() {
 
     return (
         <DashboardLayout>
+            <Layout>
             <div className="text-center">
                 <div>
                     <h1>User</h1>
@@ -75,6 +77,7 @@ export default function User() {
                     ))}
                 </div>
             </div>
+            </Layout>
         </DashboardLayout>
     );
 }

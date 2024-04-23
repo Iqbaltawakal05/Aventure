@@ -15,6 +15,8 @@ async function LoginData(email, password, setLoading) {
         });
 
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('name', res.data.data.name);
+        localStorage.setItem('profile', res.data.data.profilePictureUrl);
 
         const token = localStorage.getItem('token');
 
@@ -41,7 +43,7 @@ async function LogoutData() {
             }
         });
 
-        localStorage.removeItem('token');
+        localStorage.removeItem('token', 'name');
         window.location.href = '/';
 
     } catch (error) {
