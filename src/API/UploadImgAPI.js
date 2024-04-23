@@ -16,6 +16,7 @@ async function UploadImg(imageFile) {
             }
         });
 
+        console.log(response);
         return response;
     } catch (error) {
         console.error('Error fetching upload data:', error);
