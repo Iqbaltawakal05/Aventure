@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import DashboardLayout from "@/Components/DashboardLayout";
 import { deleteBanner, fetchBannerById, updateBanner } from "@/API/BannerAPI";
+import { UploadImg } from '@/API/UploadImgAPI';
 
 export default function PromoDetail() {
     const router = useRouter();
     const { id } = router.query;
     const [banner, setBanner] = useState(null);
     const [editedBanner, setEditedBanner] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
 
     useEffect(() => {
         async function fetchBanner() {
@@ -26,13 +28,31 @@ export default function PromoDetail() {
     }, [id]);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setEditedBanner({ ...editedBanner, [name]: value });
+        const { name, value, files } = e.target;
+        if (name === "imageUrl") {
+            const file = files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                setEditedBanner({ ...editedBanner, imageUrl: reader.result });
+                setImageFile(file);
+            };
+        } else {
+            setEditedBanner({ ...editedBanner, [name]: value });
+        }
     };
 
     const handleSubmit = async () => {
+            
         try {
-            await updateBanner(id, editedBanner);
+            const uploadResponse = await UploadImg(imageFile);
+            const imageUrl = uploadResponse.data.url;
+            const bannerData = {
+                name: editedBanner.name,
+                imageUrl: imageUrl,
+            };
+
+            await updateBanner(id, bannerData);
             router.push('/dashboard/banner', '/');
             router.reload()
         } catch (error) {
@@ -80,7 +100,8 @@ export default function PromoDetail() {
                                     <input type="text" name="name" value={editedBanner.name} onChange={handleInputChange} />
                                 </label>
                                 <label>image :
-                                    <input type="text" name="imageUrl" value={editedBanner.imageUrl} onChange={handleInputChange} />
+                                    <input type="file" id="imageUrl" name="imageUrl" onChange={handleInputChange} /><br />
+                                    {editedBanner.imageUrl && <img src={editedBanner.imageUrl} alt="Preview" style={{ maxWidth: '200px' }} />}
                                 </label>
                             </form>
                         </div>
