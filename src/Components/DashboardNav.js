@@ -2,30 +2,7 @@ import { LogoutData } from "@/API/AuthAPI";
 import React, { useEffect, useState } from "react";
 
 export default function Dashboardnavbar() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [activePage, setActivePage] = useState("");
-    const [userData, setUserData] = useState(null);
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const userDataResponse = await loggedUserData();
-                setUserData(userDataResponse);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        }
-        
-        fetchData();
-    }, []);
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            setIsLoggedIn(true);
-        }
-        setActivePage(window.location.pathname);
-    }, []);
 
     const handleLogout = async () => {
         try {
