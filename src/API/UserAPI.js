@@ -33,4 +33,22 @@ async function updateUserRole(userId, newRole) {
   }
 }
 
-export { fetchAllUserData, updateUserRole }
+async function loggedUserData() {
+    try {
+        const response = await axios.get(`${BASE_URL}/api/v1/user`, 
+        {
+            headers: {
+                apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+                Authorization: `bearer ${localStorage.getItem('token')}`,
+            }
+        });
+        console.log(response.data)
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        return null;
+    }
+}
+
+
+export { fetchAllUserData, updateUserRole, loggedUserData }
