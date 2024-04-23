@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import { fetchPromoById, updatePromo, deletePromo } from '@/API/PromoAPI';
 import DashboardLayout from "@/Components/DashboardLayout";
+import { UploadImg } from "@/API/UploadImgAPI";
 
 export default function PromoDetail() {
     const router = useRouter();
     const { id } = router.query;
     const [promo, setPromo] = useState(null);
     const [editedPromo, setEditedPromo] = useState(null);
+    const [imagefile, setImageFile] = useState(null);
 
     useEffect(() => {
         async function fetchPromo() {
@@ -26,13 +28,32 @@ export default function PromoDetail() {
     }, [id]);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setEditedPromo({ ...editedPromo, [name]: value });
+        const { name, value, files } = e.target;
+        if (name === "imageUrl") {
+            const file = files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                setEditedPromo({ ...editedPromo, imageUrl: reader.result });
+                setImageFile(file);
+            };
+        } else {
+            setEditedPromo({ ...editedPromo, [name]: value });
+        }
     };
 
     const handleSubmit = async () => {
+
         try {
-            await updatePromo(id, editedPromo);
+            const uploadResponse = await UploadImg(imagefile);
+            const imageUrl = uploadResponse.data.url;
+            const promoData = {
+                title: editedPromo.title,
+                description: editedPromo.description,
+                promo_code: editedPromo.promo_code,
+                imageUrl: imageUrl
+            }
+            await updatePromo(id, promoData);
             router.push('/dashboard/promo');
             router.reload()
         } catch (error) {
@@ -88,7 +109,8 @@ export default function PromoDetail() {
                                     <input type="text" name="promo_code" value={editedPromo.promo_code} onChange={handleInputChange} />
                                 </label>
                                 <label>image :
-                                    <input type="text" name="imageUrl" value={editedPromo.imageUrl} onChange={handleInputChange} />
+                                    <input type="file" id="imageUrl" name="imageUrl" onChange={handleInputChange} /><br />
+                                    {editedPromo.imageUrl && <img src={editedPromo.imageUrl} alt="Preview" style={{ maxWidth: '200px' }} />}
                                 </label>
                             </form>
                         </div>
