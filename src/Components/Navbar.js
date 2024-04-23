@@ -5,7 +5,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            const isScrolled = window.scrollY > 650;
+            const isScrolled = window.scrollY > 600;
             setScrolled(isScrolled);
         };
 
@@ -25,7 +25,7 @@ export default function Navbar() {
                     {scrolled && (
                         <div className="additional-info">
                             <a href="/category">Category</a>
-                            <a href="/promo">promo</a>
+                            <a href="/promo">Promo</a>
                             <a href="/activity">Vacations</a>
                         </div>
                     )}

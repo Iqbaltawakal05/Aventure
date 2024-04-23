@@ -1,14 +1,20 @@
 import { fetchAllActivitiesData } from "@/API/ActivityAPI";
+import { fetchAllCategoriesData } from "@/API/CategoryAPI";
 import Layout from "@/Components/Layout";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function category() {
     const [activities, setActivities] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
-    useEffect(() => {
+     useEffect(() => {
         fetchAllActivitiesData().then((data) => {
             setActivities(data);
+        });
+        fetchAllCategoriesData().then((data) => {
+            setCategories(data);
         });
     }, []);
 
@@ -29,6 +35,14 @@ export default function category() {
         return formattedPrice;
     };
 
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value === "all" ? null : e.target.value);
+    };
+
+    const filteredActivities = selectedCategory
+        ? activities.filter((activity) => activity.categoryId === selectedCategory)
+        : activities;
+
     return (
         <Layout>
             <section className="container">
@@ -36,8 +50,16 @@ export default function category() {
                     <a href="/"><i class="bi bi-chevron-left"></i></a>
                     <a href="/">Vacations</a>
                 </div>
+                <div className="dropdown mb-3">
+                    <select className="form-select" onChange={handleCategoryChange}>
+                        <option value="all">All Categories</option>
+                        {categories.map((category) => (
+                            <option key={category.id} value={category.id}>{category.name}</option>
+                        ))}
+                    </select>
+                </div>
             <div className="row">
-                {activities.map((activity) => (
+                {filteredActivities.map((activity) => (
                     <div className="col-md-4">
                             <div className="mb-4">
                                     <img src={activity.imageUrls} className="card-img" alt="..." />

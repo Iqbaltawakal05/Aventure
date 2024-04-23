@@ -91,9 +91,6 @@ async function fetchActivityByCategoryId(categoryId) {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
             },
-            params: {
-                type: 'vacation'
-            }
         })
         return response.data.data;
     } catch (error) {
