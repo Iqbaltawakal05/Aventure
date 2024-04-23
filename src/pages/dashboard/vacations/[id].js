@@ -2,12 +2,14 @@ import { deleteActivity, fetchActivityById, updateActivity } from "@/API/Activit
 import DashboardLayout from "@/Components/DashboardLayout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { UploadImg } from "@/API/UploadImgAPI";
 
 export default function VacationDetail() {
     const router = useRouter();
     const { id } = router.query;
-    const [vacations, setVacations] = useState([]);
+    const [vacations, setVacations] = useState({});
     const [editedVacations, setEditedVacations] = useState({});
+    const [imageFile, setImageFile] = useState(null);
 
     useEffect (() => {
         async function fetchData() {
@@ -21,14 +23,40 @@ export default function VacationDetail() {
     }, [id]);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setEditedVacations({ ...editedVacations, [name]: name === 'price' || name === 'price_discount' ? parseFloat(value) : value});
+        const { name, value, files } = e.target;
+        if (name === "imageUrls") {
+            const file = files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                setEditedVacations({ ...editedVacations, imageUrls: reader.result });
+                setImageFile(file);
+            };
+        } else {
+            setEditedVacations({ ...editedVacations, [name]: name === 'price' || name === 'price_discount' ? parseFloat(value) : value});
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await updateActivity(id, editedVacations);
+            const uploadResponse = await UploadImg(imageFile);
+            const imageUrl = uploadResponse.data.url;
+            const VacationsData = {
+                title: editedVacations.title,
+                description: editedVacations.description,
+                imageUrls: [imageUrl],
+                price: editedVacations.price,
+                price_discount: editedVacations.price_discount,
+                rating: editedVacations.rating,
+                total_reviews: editedVacations.total_reviews,
+                facilities: editedVacations.facilities,
+                address: editedVacations.address,
+                province: editedVacations.province,
+                city: editedVacations.city,
+                location_maps: editedVacations.location_maps
+            };
+            await updateActivity(id, VacationsData);
             router.push('/dashboard/vacations', '/');
             router.reload()
         } catch (error) {
@@ -37,35 +65,28 @@ export default function VacationDetail() {
     };
 
     const handleDelete = async () => {
-    try {
-        if (confirm("Are you sure you want to delete this Vacations?")) {
-            await deleteActivity(id);
-            router.push('/dashboard/vacations', '/');
+        try {
+            if (confirm("Are you sure you want to delete this Vacations?")) {
+                await deleteActivity(id);
+                router.push('/dashboard/vacations', '/');
+            }
+        } catch (error) {
+            console.error("Error deleting vacations:", error);
         }
-    } catch (error) {
-        console.error("Error deleting vacations:", error);
-    }
-    };
-
-    const handleInputChangeArray = (e, index) => {
-    const { name, value } = e.target;
-    const updatedUrls = [...editedVacations.imageUrls];
-    updatedUrls[index] = value;
-    setEditedVacations({ ...editedVacations, [name]: updatedUrls });
     };
 
     return (
         <DashboardLayout>
             <div className="text-center">
-                <img src={vacations.imageUrls} />
                 <p>{vacations.title}</p>
-                <p>{vacations.city}</p>
-                <p>{vacations.province}</p>
                 <p>{vacations.description}</p>
-                <p>{vacations.address}</p>
-                <p>{vacations.facilities}</p>
+                <img src={vacations.imageUrls} />
+                <p>{vacations.city}</p>
                 <p>{vacations.price}</p>
                 <p>{vacations.price_discount}</p>
+                <p>{vacations.province}</p>
+                <p>{vacations.address}</p>
+                <p>{vacations.facilities}</p>
                 <p>{vacations.rating}</p>
                 <p>{vacations.total_reviews}</p>
                 <div dangerouslySetInnerHTML={{ __html: vacations.location_maps }} />
@@ -85,37 +106,15 @@ export default function VacationDetail() {
                         </div>
                         <div className="modal-body">
                             <form onSubmit={handleSubmit}>
-                                {editedVacations.imageUrls && (
-                                    editedVacations.imageUrls.map((url, index) => (
-                                        <div key={index}>
-                                            <label>Image {index + 1}:
-                                                <input
-                                                    type="text"
-                                                    name={`imageUrls`}
-                                                    value={editedVacations.imageUrls[index]}
-                                                    onChange={(e) => handleInputChangeArray(e, index)}
-                                                />
-                                            </label>
-                                        </div>
-                                    ))
-                                )}
                                 <label>Title:
                                     <input type="text" name="title" value={editedVacations.title} onChange={handleInputChange} />
-                                </label>
-                                <label>City:
-                                    <input type="text" name="city" value={editedVacations.city} onChange={handleInputChange} />
-                                </label>
-                                <label>Province:
-                                    <input type="text" name="province" value={editedVacations.province} onChange={handleInputChange} />
                                 </label>
                                 <label>Description:
                                     <input type="text" name="description" value={editedVacations.description} onChange={handleInputChange} />
                                 </label>
-                                <label>Address:
-                                    <input type="text" name="address" value={editedVacations.address} onChange={handleInputChange} />
-                                </label>
-                                <label>Facilities:
-                                    <input type="text" name="facilities" value={editedVacations.facilities} onChange={handleInputChange} />
+                                <label>image:
+                                    <input type="file" id="imageUrl" name="imageUrls" onChange={handleInputChange} /><br />
+                                    {editedVacations.imageUrls && <img src={editedVacations.imageUrls} alt="Preview" style={{ maxWidth: '200px' }} />}
                                 </label>
                                 <label>Price:
                                     <input type="number" name="price" value={editedVacations.price} onChange={handleInputChange} />
@@ -129,8 +128,20 @@ export default function VacationDetail() {
                                 <label>totalReviews:
                                     <input type="number" name="total_reviews" value={editedVacations.total_reviews} onChange={handleInputChange} />
                                 </label>
+                                <label>Facilities:
+                                    <input type="text" name="facilities" value={editedVacations.facilities} onChange={handleInputChange} />
+                                </label>
+                                <label>Address:
+                                    <input type="text" name="address" value={editedVacations.address} onChange={handleInputChange} />
+                                </label>
+                                <label>Province:
+                                    <input type="text" name="province" value={editedVacations.province} onChange={handleInputChange} />
+                                </label>
+                                <label>City:
+                                    <input type="text" name="city" value={editedVacations.city} onChange={handleInputChange} />
+                                </label>
                                 <label>locationMaps:
-                                    <input type="text" name="location_maps" value={editedVacations.location_maps} onChange={handleInputChange} />
+                                     <input type="text" name="location_maps" value={editedVacations.location_maps} onChange={handleInputChange} />
                                 </label>
                             </form>
                         </div>
@@ -144,3 +155,4 @@ export default function VacationDetail() {
         </DashboardLayout>
     )
 }
+
