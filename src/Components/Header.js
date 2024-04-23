@@ -1,6 +1,6 @@
 export default function Header() {
     return (
-        <header className="container">
+        <header>
             <div className="headerImg">
                 <img src="/Banner.png" alt="placeholder" />
             </div>

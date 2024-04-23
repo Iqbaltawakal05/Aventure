@@ -8,13 +8,39 @@ import "slick-carousel/slick/slick-theme.css";
 export default function Activity() {
     const [activity, setActivity] = useState([]);
 
-    const settings = {
-    dots: false,
+    var settings = {
+    className: "center",
+    centerMode: true,
     infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 3,
+    slidesToScroll: 3,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4
-    };
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
     useEffect(() => {
         async function fetchData() {
@@ -57,10 +83,7 @@ export default function Activity() {
             {activity.map((activity, index) => (
                 <div className="card-vacations" key={activity.id}>
                     <img src={activity.imageUrls[0]} alt={activity.name} />
-                    <div className="titles-vacations">
                     <h3 className="title-vacations">{activity.title}</h3>
-                    <p className="rating-vacations">{activity.rating} <i className="bi bi-star-fill"></i></p>
-                    </div>
                     <div className="location-vacations">
                     <p className="city-vacations">{activity.city}</p>
                     <p className="province-vacations">{activity.province}</p>

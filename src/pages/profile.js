@@ -6,7 +6,7 @@ import { UploadImg } from '@/API/UploadImgAPI';
 export default function Profile() {
     const router = useRouter();
     const [loggedUser, setLoggedUser] = useState(null);
-    const [imageFile, setImageFile] = useState(null); // State untuk menyimpan file gambar yang dipilih
+    const [imageFile, setImageFile] = useState(null);
     const [editedProfile, setEditedProfile] = useState({
         name: '',
         email: '',

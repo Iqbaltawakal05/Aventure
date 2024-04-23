@@ -8,13 +8,41 @@ import "slick-carousel/slick/slick-theme.css";
 export default function Category() {
     const [category, setCategory] = useState([]);
 
-    const settings = {
+    var settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
     slidesToShow: 4,
-    slidesToScroll: 4
-    };
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
      useEffect(() => {
         async function fetchData() {
