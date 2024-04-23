@@ -1,18 +1,23 @@
 import { LogoutData } from "@/API/AuthAPI";
 import React, { useEffect, useState } from "react";
+import { loggedUserData } from "@/API/userAPI"
 
 export default function Dashboardnavbar() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [activePage, setActivePage] = useState("");
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            setIsLoggedIn(true);
+        async function fetchData() {
+            try {
+                const userDataResponse = await loggedUserData();
+                setUserData(userDataResponse);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
         }
-        setActivePage(window.location.pathname);
+        
+        fetchData();
     }, []);
-
     const handleLogout = async () => {
         try {
             const res = await LogoutData();
@@ -28,14 +33,15 @@ export default function Dashboardnavbar() {
             <a className={`dash-link nav-link ${activePage === "/dashboard/promo" ? "active" : ""}`} href="/dashboard/promo">Promo</a>
             <a className={`dash-link nav-link ${activePage === "/dashboard/category" ? "active" : ""}`} href="/dashboard/category">Category</a>
             <a className={`dash-link nav-link ${activePage === "/dashboard/vacations" ? "active" : ""}`} href="/dashboard/vacations">Vacations</a>
-            {isLoggedIn ? (
-                <button className="nav-link" onClick={handleLogout}>Logout</button>
-            ) : (
-                <>
-                    <a href="/auth/login" className={`nav-link ${activePage === "/auth/login" ? "active" : ""}`}>Login</a>
-                    <a href="/auth/register" className={`nav-link ${activePage === "/auth/register" ? "active" : ""}`}>Register</a>
-                </>
+            {userData && (
+                <div className='profile-nav'>
+                    <img src={userData.profilePictureUrl} alt="profile picture" />
+                    <h1>{userData.name}</h1>
+                </div>
             )}
+                <button className="nav-link" onClick={handleLogout}>Logout</button>
+            <div>
+            </div>
         </div>
     );
 }
