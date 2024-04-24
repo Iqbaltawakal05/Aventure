@@ -25,30 +25,33 @@ export default function Register() {
         }
     };
 
+    const handleBack = () => {
+        window.location.href = "/";
+    };
+
     return (
         <div className="login-page">
             <div className="login-header">
-                <img src='/wave.svg' alt="login icon"/>
+                <img src='/gg.jpg' alt="login icon"/>
             </div>
             <div className="login-body">
                 <div className="login-container">
                     <img src='/authIcon.svg' alt="login icon"/>
-                    <div className="login-form">
-                        <h1>Register</h1>
-                        <form onSubmit={handleSubmit}>
-                            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-                            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <input type="password" placeholder="Repeat Password" value={passwordRepeat} onChange={(e) => setPasswordRepeat(e.target.value)} />
-                            <button type="submit" className="login-btn">Register</button>
-                        </form>
-                        <button type="button" className="back-btn" onClick={() => window.history.back()}>Back</button>
-                        <div className="link-register">
-                            <p>Already have an account?</p>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <h1>Register</h1>
+                    {/* {!!notif.length && <h5>{notif}</h5>} */}
+                    <input type="text" className="form-control" placeholder="Name" onChange={(e) => setName(e.target.value)}/>
+                    <input type="email" className="form-control" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="password" placeholder="Repeat Password" onChange={(e) => setPasswordRepeat(e.target.value)}/>
+                    <button type="submit" className="login-btn">Register</button>
+                    <button type="submit" className="back-btn" onClick={handleBack}>Back</button>
+                    <div className="link-register">
+                        <p>Already have an account?</p>
                             <a href="/auth/login">Login</a>
-                        </div>
                     </div>
-                </div>
+                </form>
+            </div>
             </div>
         </div>
     );
