@@ -20,19 +20,20 @@ export default function Category() {
                 <Link href="/dashboard/category/create">
                 <button>Create</button>
                 </Link>
-                {category && category.map((category, index) => (
-                    <div className="row" key={index}>
-                        <img src={category.imageUrl} alt={category.name} />
-                        <p>{category.name}</p>
-                        <div>
-                            <Link href={`/dashboard/category/${category.id}`} passHref>
-                                <button type="button" className="btn btn-primary">
-                                    View Details
-                                </button>
+                <div className="row">
+                {category.map((category) => (
+                    <div className="col-md-4">
+                            <div className="card mb-4">
+                            <Link href={`/dashboard/category/${category.id}`}>
+                                    <img src={category.imageUrl} className="card-img" alt="..." />
                             </Link>
-                        </div>
+                                <div className="card-body">
+                                    <h5 className="card-title">{category.name}</h5>
+                                </div>
+                            </div>
                     </div>
                 ))}
+            </div>
             </div>
         </DashboardLayout>
     )
