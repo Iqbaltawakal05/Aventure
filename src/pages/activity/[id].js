@@ -62,9 +62,18 @@ export default function ActivityDetail() {
                             <div className='imageActivityId col-md-7'>
                                 <img src={Activity.imageUrls} alt={Activity.title} />
                             </div>
-                            <div className='prices col-md-5'>
-                                    <p>{Activity.title}</p>
-                                <div className="d-flex normal-price">
+                            <div className='col-md-5'>
+                        <div className="locationn">
+                                <div className="locationn d-flex gap-4 col-md-8">
+                                <i class="bi bi-geo-alt-fill"></i> 
+                                <p>{Activity.address}</p>
+                                </div>
+                            <div className="locations" dangerouslySetInnerHTML={{ __html: Activity.location_maps }} />
+                        </div>
+                        </div>
+                        <div className="row prices">
+                            <div className='col-md-6'>
+                                    <div className="d-flex normal-price">
                                     <h4>Normal price</h4>
                                     <div className="d-flex original-prices">
                                     <h6>{formatPrice(Activity.price)}</h6>
@@ -78,26 +87,17 @@ export default function ActivityDetail() {
                                     <h6>/person</h6>
                                     </div>
                                 </div>
-                                <div className="paybtn">
-                                    <button className="pay-btn disable">Pay Now</button>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='bodyActivityId'>
+                                    <h3>Description</h3>
+                                    <h5>{Activity.description}</h5>
+                                    <h3>Included</h3>
+                                    <h5>{Activity.facilities}</h5>
                                 </div>
-                                <div classname="d-flex fasilitass">
-                                    <p className='included'>Included</p>
-                                    <p>{Activity.facilities}</p>
-                                </div>
-                        </div>
+                            </div>
                     </div>
-                            <div className='bodyActivityId'>
-                                <h3>Description</h3>
-                                <h5>{Activity.description}</h5>
-                            </div>
-                        <div className="locationn">
-                            <div className="d-flex gap-4 col-md-8">
-                            <i class="bi bi-geo-alt-fill"></i> 
-                            <p>{Activity.address}</p>
-                            </div>
-                            <div className="locations" dangerouslySetInnerHTML={{ __html: Activity.location_maps }} />
-                        </div>
+                    </div>
                 </Layout>
             )}
         </div>

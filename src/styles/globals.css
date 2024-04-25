@@ -754,13 +754,15 @@ header {
 }
 
 .bodyActivityId h3{
-  font-family: AmsiProCond-Bold, sans-serif;
-  font-size: 16px;
-  margin-top: 4vh;
+  font-size: bold;
+  font-size: 20px;
+  margin-top: 3vh;
+  color: #098d62;
 }
 
 .bodyActivityId h5{
   margin-top: 3vh;
+  margin-bottom: 3vh;
   font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
   font-size: 16px;
   color: #434343;
@@ -809,6 +811,7 @@ header {
   border: 1px solid #d1d1d1;
   color: #888888;
   border-radius: 5px;
+  margin-top: 10vh;
 }
 
 .original-prices{
@@ -820,24 +823,6 @@ header {
   
 }
 
-.prices button{
-  margin-top: 15vh;
-  margin-left: 6vw;
-}
-
-.pay-btn{
-  background-color: #098d62;
-  border: none;
-  width: 60%;
-  color: white;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 50vw;
-}
-
 .locations iframe {
   width: 100%;
   height: 60vh;
@@ -845,7 +830,7 @@ header {
 }
 
 .locationn{
-  margin-top: 10vh;
+  margin-top: 2vh;
 }
 
 .locationn i{
@@ -860,14 +845,9 @@ header {
   margin-bottom: 3vh;
 }
 
-.fasilitass p{
-  margin-left: 10vw;
-  font-size: 4vw;
-}
-
 .normal-price{
   justify-content: space-between;
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 
 .discountPrice{
