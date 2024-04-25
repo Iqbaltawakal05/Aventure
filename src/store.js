@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import notifReducer from '@/slice/notifSlice';
+import { notificationReducer } from '@/slice/notifSlice';
 
 export const store = configureStore({
   reducer: {
-    notif: notifReducer,
+    notification: notificationReducer,
   },
 });

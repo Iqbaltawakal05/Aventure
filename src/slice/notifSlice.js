@@ -1,21 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  message: '',
-};
-
-const notifSlice = createSlice({
-  name: 'notif',
-  initialState,
+export const notificationSlice = createSlice({
+  name: 'notification',
+  initialState: {
+    isVisible: false,
+    message: '',
+  },
   reducers: {
-    setNotif(state, action) {
-      state.message = action.payload.message;
+    showNotification: (state, action) => {
+      state.isVisible = true;
+      state.message = action.payload;
     },
-    clearNotif(state) {
+    hideNotification: (state) => {
+      state.isVisible = false;
       state.message = '';
     },
   },
 });
 
-export const { setNotif, clearNotif } = notifSlice.actions;
-export default notifSlice.reducer;
+export const { showNotification, hideNotification } = notificationSlice.actions;
+
+export const notificationReducer = notificationSlice.reducer;

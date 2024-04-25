@@ -875,3 +875,22 @@ header {
   margin-top: 5vh;
 }
 }
+
+
+@media screen and (max-width: 700px) {
+  .login-page img {
+    display: none;
+  }
+
+  .login-container {
+    flex-direction: column;
+  }
+
+  .login-container img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+
+}
