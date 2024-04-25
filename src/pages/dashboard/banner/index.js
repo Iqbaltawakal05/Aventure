@@ -16,24 +16,25 @@ export default function Banner() {
 
     return (
         <DashboardLayout>
-            <div className="text-center">
+                <div className="form-selecttt">
                 <Link href="/dashboard/banner/create">
                 <button>Create</button>
                 </Link>
+                </div>
+                <div className="row">
                 {banner && banner.map((banner, index) => (
-                    <div className="row" key={index}>
-                        <img src={banner.imageUrl} alt={banner.name} />
-                        <p>{banner.name}</p>
-                        <div>
-                            <Link href={`/dashboard/banner/${banner.id}`} passHref>
-                                <button type="button" className="btn btn-primary">
-                                    View Details
-                                </button>
+                    <div className="col-md-4">
+                            <div className="card mb-4">
+                            <Link href={`/dashboard/banner/${banner.id}`}>
+                                    <img src={banner.imageUrl} className="card-img" alt="..." />
                             </Link>
-                        </div>
+                                <div className="card-body">
+                                    <h5 className="card-title">{banner.name}</h5>
+                                </div>
+                            </div>
                     </div>
                 ))}
-            </div>
+                </div>
         </DashboardLayout>
     )
 }

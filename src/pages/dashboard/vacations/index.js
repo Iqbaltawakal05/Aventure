@@ -52,7 +52,7 @@ export default function Vacations() {
                     </Link>
                     </div>
                     <div>
-                    <select className="form-selectt" onChange={handleCategoryChange}>
+                    <select onChange={handleCategoryChange}>
                         <option value="all">Filter</option>
                         {categories.map((category) => (
                             <option key={category.id} value={category.id}>{category.name}</option>

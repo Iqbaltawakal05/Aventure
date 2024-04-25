@@ -16,7 +16,6 @@ export default function Category() {
     })
     return (
         <DashboardLayout>
-            <div className="text-center">
                 <div className='form-selecttt'>
                 <Link href="/dashboard/category/create">
                 <button>Create</button>
@@ -35,7 +34,6 @@ export default function Category() {
                             </div>
                     </div>
                 ))}
-            </div>
             </div>
         </DashboardLayout>
     )
