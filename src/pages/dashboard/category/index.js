@@ -17,9 +17,11 @@ export default function Category() {
     return (
         <DashboardLayout>
             <div className="text-center">
+                <div className='form-selecttt'>
                 <Link href="/dashboard/category/create">
                 <button>Create</button>
                 </Link>
+                </div>
                 <div className="row">
                 {category.map((category) => (
                     <div className="col-md-4">
