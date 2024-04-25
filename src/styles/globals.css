@@ -874,6 +874,28 @@ header {
   justify-content: space-between;
   margin-top: 5vh;
 }
+
+/* CSS Styling untuk Tombol Toggle */
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 120px;
+  transform: translateY(-110%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.repeatpassword-toggle {
+  position: absolute;
+  top: 50%;
+  right: 120px;
+  transform: translateY(140%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 }
 
 

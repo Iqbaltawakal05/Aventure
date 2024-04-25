@@ -62,11 +62,10 @@ async function RegisterData(name, email, password, passwordRepeat) {
         });
 
         console.log(res.data)
-        alert(res.message);
     }
         catch (error) {
             console.log(error);
-            alert(error.response.data.message);
+            throw error;
         }
     };
 

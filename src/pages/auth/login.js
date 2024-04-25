@@ -6,6 +6,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const dispatch = useDispatch();
     const { isVisible, message } = useSelector((state) => state.notification);
 
@@ -39,6 +40,10 @@ export default function Login() {
         }
     };
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     const handleBack = () => {
         window.location.href = "/";
     };
@@ -55,7 +60,15 @@ export default function Login() {
                     <h1>Login</h1>
                     {isVisible && <h5 className="notif">{message}</h5>}
                     <input type="email" className="form-control" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-                    <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                            <button type="button" className="password-toggle" onClick={togglePasswordVisibility}>
+                                {showPassword ? <i className="bi bi-eye-slash-fill"></i> : <i className="bi bi-eye-fill"></i>}
+                            </button>
                     <button type="submit" className="login-btn" disabled={loading}>{loading ? 'Loading...' : 'Login'}</button>
                     <button type="button" className="back-btn" onClick={handleBack}>Back</button>
                     <div className="link-register">
