@@ -846,10 +846,12 @@ header {
 }
 
 .normal-price{
+  justify-content: space-between;
   margin-top: 5vh;
 }
 
 .discountPrice{
+  justify-content: space-between;
   margin-top: 5vh;
 }
 

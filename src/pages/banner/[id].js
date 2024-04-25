@@ -1,6 +1,5 @@
 import { fetchBannerById } from "@/API/BannerAPI";
 import Layout from "@/Components/Layout";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -22,11 +21,17 @@ export default function BannerDetail() {
         <div>
             {banner && (
                 <Layout>
-                    <img src={banner.imageUrl} alt={banner.name} />
-                    <h1>{banner.name}</h1>
-                    <Link href={"/"}>
-                    <button>Back</button>
-                    </Link>
+                    <div className="back-buttonid">
+                            <div className="d-flex gap-3">
+                                <a href="/"><i class="bi bi-chevron-left"></i></a>
+                                <div>
+                                    <a href="/">{banner.name}</a>
+                                </div>
+                            </div>
+                    </div>
+                    <div className='imageActivityId'>
+                        <img src={banner.imageUrl} alt={banner.name} />
+                    </div>
                 </Layout>
             )}
         </div>

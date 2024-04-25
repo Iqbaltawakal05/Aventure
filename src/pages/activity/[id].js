@@ -34,7 +34,7 @@ export default function ActivityDetail() {
 
         return formattedPrice;
     } else {
-        return 'Rp 0'; // Atau nilai default lainnya jika price tidak ada
+        return 'Rp 0';
     }
     };
 
@@ -73,18 +73,18 @@ export default function ActivityDetail() {
                         </div>
                         <div className="row prices">
                             <div className='col-md-6'>
-                                    <div className="d-flex normal-price">
-                                    <h4>Normal price</h4>
+                                    <div className="bodyActivityId">
+                                    <h3>Normal price</h3>
                                     <div className="d-flex original-prices">
-                                    <h6>{formatPrice(Activity.price)}</h6>
-                                    <h6>/person</h6>
+                                    <h5>{formatPrice(Activity.price)}</h5>
+                                    <h5>/person</h5>
                                     </div>
                                 </div>
-                                <div className="d-flex discountPrice">
-                                    <h4>Discount price</h4>
+                                <div className="bodyActivityId">
+                                    <h3>Discount price</h3>
                                     <div className="d-flex discount-prices">
-                                    <h6>{formatPrice(Activity.price_discount)}</h6>
-                                    <h6>/person</h6>
+                                    <h5>{formatPrice(Activity.price_discount)}</h5>
+                                    <h5>/person</h5>
                                     </div>
                                 </div>
                             </div>
