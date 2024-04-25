@@ -4,14 +4,16 @@ import React, { useEffect, useState } from "react";
 export default function Dashboardnavbar() {
     const [activePage, setActivePage] = useState("");
 
+     useEffect(() => {
+        setActivePage(window.location.pathname);
+    }, []);
+
     const handleLogout = async () => {
         try {
             const res = await LogoutData();
         } catch (error) {
         }
     };
-
-    useEffect(() => {
 
     return (
         <div className="dashnav">

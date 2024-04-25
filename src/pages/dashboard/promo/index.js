@@ -23,7 +23,7 @@ export default function Promo() {
                 {promos.map((promo) => (
                     <div className="col-md-4">
                             <div className="mb-4">
-                            <Link href={`/promo/${promo.id}`}>
+                            <Link href={`/dashboard/promo/${promo.id}`}>
                                     <img src={promo.imageUrl} className="card-img" alt="..." />
                             </Link>
                                 <div className="card-body">
