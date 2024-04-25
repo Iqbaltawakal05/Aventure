@@ -4,7 +4,7 @@ import Layout from "@/Components/Layout";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function category() {
+export default function vacations() {
     const [activities, setActivities] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);

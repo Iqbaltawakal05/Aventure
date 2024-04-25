@@ -2,38 +2,90 @@ import { useEffect, useState } from "react";
 import Link from 'next/link';
 import DashboardLayout from "@/Components/DashboardLayout";
 import { fetchAllActivitiesData } from "@/API/ActivityAPI";
+import { fetchAllCategoriesData } from "@/API/CategoryAPI";
 
 export default function Vacations() {
-    const [vacations, setVacations] = useState(null);
+    const [activities, setActivities] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
     useEffect(() => {
-        async function fetchData() {
-            const data = await fetchAllActivitiesData();
-            setVacations(data);
-        }
-        fetchData();
+        fetchAllActivitiesData().then((data) => {
+            setActivities(data);
+        });
+        fetchAllCategoriesData().then((data) => {
+            setCategories(data);
+        });
     }, []);
+
+     const formatPrice = (price) => {
+        let priceString = price.toString();
+        let priceArray = priceString.split('');
+        let formattedPrice = '';
+
+        for (let i = 0; i < priceArray.length; i++) {
+            if ((priceArray.length - i) % 3 === 0 && i !== 0) {
+                formattedPrice += '.';
+            }
+            formattedPrice += priceArray[i];
+        }
+
+        formattedPrice = 'Rp ' + formattedPrice;
+
+        return formattedPrice;
+    };
+
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value === "all" ? null : e.target.value);
+    };
+
+    const filteredActivities = selectedCategory
+        ? activities.filter((activity) => activity.categoryId === selectedCategory)
+        : activities;
 
     return (
         <DashboardLayout>
-            <div className="text-center">
-                <Link href="/dashboard/vacations/create">
-                <button>Create</button>
-                </Link>
-                {vacations && vacations.map((vacations, index) => (
-                    <div className="row" key={index}>
-                        <img src={vacations.imageUrls} alt={vacations.title} />
-                        <p>{vacations.title}</p>
-                        <p>{vacations.description}</p>
-                        <div>
-                            <Link href={`/dashboard/vacations/${vacations.id}`} passHref>
-                                <button type="button" className="btn btn-primary">
-                                    View Details
-                                </button>
-                            </Link>
-                        </div>
+                <div className="form-selecttt container">
+                    <div>
+                    <Link href="/dashboard/vacations/create">
+                        <button>Create</button>
+                    </Link>
                     </div>
-                ))}
+                    <div>
+                    <select className="form-selectt" onChange={handleCategoryChange}>
+                        <option value="all">Filter</option>
+                        {categories.map((category) => (
+                            <option key={category.id} value={category.id}>{category.name}</option>
+                        ))}
+                    </select>
+                    </div>
+                </div>
+                <div className="row">
+                    {filteredActivities.length > 0 ? (
+                        filteredActivities.map((activity) => (
+                            <div className="col-md-4" key={activity.id}>
+                                <div className="mb-4">
+                                    <img src={activity.imageUrls} className="card-img" alt="..." />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{activity.title}</h5>
+                                        <div className="location-vacations">
+                                            <p className="city-vacations">{activity.city}</p>
+                                            <p className="province-vacations">{activity.province}</p>
+                                        </div>
+                                        <div className="price">
+                                            <p className="original-price">{formatPrice(activity.price)}</p>
+                                            <p className="discounted-price">{formatPrice(activity.price_discount)}</p>
+                                        </div>
+                                    </div>
+                                    <Link href={`/dashboard/vacations/${activity.id}`}><button className="activitys-button">See Detail</button></Link>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="col-md-12">
+                            <p>No activities found</p>
+                        </div>
+                    )}
             </div>
         </DashboardLayout>
     );
