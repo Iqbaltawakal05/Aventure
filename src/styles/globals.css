@@ -1,8 +1,6 @@
 body {
   background-color: white;
 }
-
-@media screen {
 /* Navbar */
 
 .navbar {
@@ -855,8 +853,6 @@ header {
   margin-top: 5vh;
 }
 
-/* CSS Styling untuk Tombol Toggle */
-
 .password-toggle {
   position: absolute;
   top: 50%;
@@ -906,6 +902,29 @@ header {
   border: 1px solid #ced4da;
   cursor: pointer;
 }
+
+.btn-edit{
+  background-color: #098d62;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.btn-edit:hover{
+  color: white;
+  background-color: #09d18e;
+}
+
+.btn-delete{
+  background-color: #b61616;
+  color: white;
+  font-weight: bold;
+  margin-right: 40px;
+}
+
+.btn-delete:hover{
+  color: white;
+  background-color: red;
 }
 
 

@@ -78,12 +78,23 @@ export default function PromoDetail() {
     return (
         <DashboardLayout>
             <div className="text-center">
-                <img src={banner.imageUrl} />
-                <p>{banner.name}</p>
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Edit banner
-                </button>
-                <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+                <div className="back-buttonid">
+                            <div className="d-flex gap-3">
+                                <a href="/"><i class="bi bi-chevron-left"></i></a>
+                                <div>
+                                    <a href="/">{banner.name}</a>
+                                </div>
+                            </div>
+                            <div className="ratingActivity">
+                            <button type="button" className="btn btn-edit" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Edit banner
+                            </button>
+                            <button type="button" className="btn btn-delete" onClick={handleDelete}>Delete</button>
+                            </div>
+                    </div>
+                    <div className='imageActivityId'>
+                        <img src={banner.imageUrl} alt={banner.name} />
+                    </div>
             </div>
 
             {/* modal */}
