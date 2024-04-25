@@ -80,9 +80,9 @@ export default function PromoDetail() {
             <div className="text-center">
                 <div className="back-buttonid">
                             <div className="d-flex gap-3">
-                                <a href="/"><i class="bi bi-chevron-left"></i></a>
+                                <a href="/dashboard/banner"><i class="bi bi-chevron-left"></i></a>
                                 <div>
-                                    <a href="/">{banner.name}</a>
+                                    <a href="/dashboard/banner">{banner.name}</a>
                                 </div>
                             </div>
                             <div className="ratingActivity">
