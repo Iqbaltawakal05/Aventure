@@ -12,7 +12,6 @@ export default function PromoDetail() {
     const [editedBanner, setEditedBanner] = useState(null);
     const [showModalEdit, setShowModalEdit] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
     const [imageFile, setImageFile] = useState(null);
 
@@ -66,7 +65,6 @@ export default function PromoDetail() {
             }, 3000);
         } catch (error) {
             console.error("Error updating banner:", error);
-            setErrorMessage("Error updating banner.");
         }
     };
 
@@ -80,7 +78,6 @@ export default function PromoDetail() {
             }, 3000);
         } catch (error) {
             console.error("Error deleting banner:", error);
-            setErrorMessage("Error deleting banner.");
         }
     };
 
@@ -145,7 +142,7 @@ export default function PromoDetail() {
                 </div>
             </div>
 
-            {/* Modal for Delete Confirmation */}
+            {/* Delete Modal */}
             <div className={`modal ${showModalDelete ? 'show d-block' : ''}`} tabIndex="-1" role="dialog">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -153,10 +150,10 @@ export default function PromoDetail() {
                             <p>Are you sure you want to delete this banner?</p>
                         </div>
                         {successMessage && (
-                                    <div className="alert alert-success" role="alert">
-                                        {successMessage}
-                                    </div>
-                                )}
+                            <div className="alert alert-success" role="alert">
+                                {successMessage}
+                            </div>
+                        )}
                         <div className="modal-footer">
                              <button type="button" className="btn btn-secondary" onClick={() => setShowModalDelete(false)}>Cancel</button>
                             <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>

@@ -1,10 +1,12 @@
 import { createCategory, fetchAllCategoriesData } from "@/API/CategoryAPI";
 import DashboardLayout from "@/Components/DashboardLayout";
 import { UploadImg } from "@/API/UploadImgAPI";
+import { useRouter } from 'next/router';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Category() {
+    const router = useRouter();
     const [category, setCategory] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [successMessage, setSuccessMessage] = useState(null);
@@ -72,7 +74,8 @@ export default function Category() {
             setSuccessMessage('Category created successfully.');
              setTimeout(() => {
                 setSuccessMessage(null);
-            }, 3000);
+                router.reload();
+            },2000);
         } catch (error) {
             console.error('Error creating category:', error);
         }

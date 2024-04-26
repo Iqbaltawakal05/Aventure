@@ -9,6 +9,9 @@ export default function PromoDetail() {
     const { id } = router.query;
     const [category, setCategory] = useState(null);
     const [editedCategory, setEditedCategory] = useState(null);
+    const [showModalEdit, setShowModalEdit] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [successMessage, setSuccessMessage] = useState(null);
     const [imageFile, setImageFile] = useState(null);
 
     useEffect(() => {
@@ -40,28 +43,32 @@ export default function PromoDetail() {
             };
         } else {
             setEditedCategory({ ...editedCategory, [name]: value });
-        };
+        }
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-            if(imageFile) {
-            const uploadResponse = await UploadImg(imageFile);
-            const imageUrl = uploadResponse.data.url;
-            const categoryData = {
-                name: editedCategory.name,
-                imageUrl: imageUrl,
-            };
-            await updateCategory(id, categoryData);
-        } else {
-            const categoryData = {
-                name: editedCategory.name,
-                imageUrl: editedCategory.imageUrl,
-            };
-            await updateCategory(id, categoryData);
+            if (imageFile) {
+                const uploadResponse = await UploadImg(imageFile);
+                const imageUrl = uploadResponse.data.url;
+                const categoryData = {
+                    name: editedCategory.name,
+                    imageUrl: imageUrl,
+                };
+                await updateCategory(id, categoryData);
+            } else {
+                const categoryData = {
+                    name: editedCategory.name,
+                    imageUrl: editedCategory.imageUrl,
+                };
+                await updateCategory(id, categoryData);
             }
-            router.push('/dashboard/category', '/');
-            router.reload()
+            setSuccessMessage("Category updated successfully.");
+            setTimeout(() => {
+                setSuccessMessage(null);
+                router.reload();
+            }, 2000);
         } catch (error) {
             console.error("Error updating category:", error);
         }
@@ -69,10 +76,12 @@ export default function PromoDetail() {
 
     const handleDelete = async () => {
         try {
-            if (confirm("Are you sure you want to delete this category?")) {
-                await deleteCategory(id);
+            await deleteCategory(id);
+            setSuccessMessage("Category deleted successfully.");
+            setTimeout(() => {
+                setSuccessMessage(null);
                 router.push('/dashboard/category');
-            }
+            }, 2000);
         } catch (error) {
             console.error("Error deleting category:", error);
         }
@@ -86,46 +95,79 @@ export default function PromoDetail() {
         <DashboardLayout>
             <div className="text-center">
                 <div className="back-buttonid">
-                            <div className="d-flex gap-3">
-                                <a href="/dashboard/category"><i class="bi bi-chevron-left"></i></a>
-                                <div>
-                                    <a href="/dashboard/category">{category.name}</a>
-                                </div>
-                            </div>
-                            <div className="ratingActivity">
-                            <button type="button" className="btn btn-edit" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Edit category
-                            </button>
-                            <button type="button" className="btn btn-delete" onClick={handleDelete}>Delete</button>
-                            </div>
+                    <div className="d-flex gap-3">
+                        <a href="/dashboard/category"><i className="bi bi-chevron-left"></i></a>
+                        <div>
+                            <a href="/dashboard/category">{category.name}</a>
+                        </div>
                     </div>
-                    <div className='imageActivityId'>
-                        <img src={category.imageUrl} alt={category.name} />
+                    <div className="ratingActivity">
+                        <button type="button" className="btn btn-edit" onClick={() => setShowModalEdit(true)}>
+                            Edit category
+                        </button>
+                        <button type="button" className="btn btn-delete" onClick={() => setShowModalDelete(true)}>
+                            Delete
+                        </button>
                     </div>
+                </div>
+                <div className='imageActivityId'>
+                    <img src={category.imageUrl} alt={category.name} />
+                </div>
             </div>
 
-            {/* modal */}
-            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
+            {/* Edit Modal */}
+            <div className={`modal ${showModalEdit ? 'show d-block' : ''}`} tabIndex="-1" role="dialog">
+                <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Edit banner</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                            <h1 className="modal-title fs-5">Edit Category</h1>
+                            <button type="button" className="btn-close" onClick={() => setShowModalEdit(false)} aria-label="Close" />
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="modal-body">
+                                <div className="mb-3">
+                                    <label className="form-label">Name</label>
+                                    <input type="text" className="form-control" name="name" value={editedCategory.name} onChange={handleInputChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Image</label>
+                                    <input type="file" className="form-control" name="imageUrl" onChange={handleInputChange} />
+                                    {editedCategory.imageUrl && <img src={editedCategory.imageUrl} className="mt-2" alt="Preview" style={{ maxWidth: '200px' }} />}
+                                </div>
+                                {successMessage && (
+                                    <div className="alert alert-success" role="alert">
+                                        {successMessage}
+                                    </div>
+                                )}
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" onClick={() => setShowModalEdit(false)}>Close</button>
+                                <button type="submit" className="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {/* Delete Modal */}
+            <div className={`modal ${showModalDelete ? 'show d-block' : ''}`} tabIndex="-1" role="dialog">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5">Confirmation</h1>
+                            <button type="button" className="btn-close" onClick={() => setShowModalDelete(false)} aria-label="Close" />
                         </div>
                         <div className="modal-body">
-                            <form onSubmit={handleSubmit}>
-                                <label>Name:
-                                    <input type="text" name="name" value={editedCategory.name} onChange={handleInputChange} />
-                                </label>
-                                <label>image :
-                                    <input type="file" id="imageUrl" name="imageUrl" onChange={handleInputChange} /><br />
-                                    {editedCategory.imageUrl && <img src={editedCategory.imageUrl} alt="Preview" style={{ maxWidth: '200px' }} />}
-                                </label>
-                            </form>
+                            <p>Are you sure you want to delete this category?</p>
                         </div>
+                        {successMessage && (
+                                    <div className="alert alert-success" role="alert">
+                                        {successMessage}
+                                    </div>
+                        )}
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Save changes</button>
+                            <button type="button" className="btn btn-secondary" onClick={() => setShowModalDelete(false)}>Cancel</button>
+                            <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
                         </div>
                     </div>
                 </div>

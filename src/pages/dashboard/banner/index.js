@@ -71,6 +71,7 @@ export default function Banner() {
             setSuccessMessage('Banner created successfully.');
              setTimeout(() => {
                 setSuccessMessage(null);
+                window.location.reload();
             }, 3000);
         } catch (error) {
             console.error('Error creating banner:', error);
