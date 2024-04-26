@@ -92,13 +92,14 @@ export default function Banner() {
             <div className="row">
                 {banner && banner.map((banner, index) => (
                     <div className="col-md-4" key={index}>
-                        <div className="card mb-4">
+                        <div className="mb-4">
                             <Link href={`/dashboard/banner/${banner.id}`}>
                                 <img src={banner.imageUrl} className="card-img" alt="..." />
                             </Link>
                             <div className="card-body">
                                 <h5 className="card-title">{banner.name}</h5>
                             </div>
+                             <Link href={`/dashboard/banner/${banner.id}`}><button className="activitys-button">See Detail</button></Link>
                         </div>
                     </div>
                 ))}

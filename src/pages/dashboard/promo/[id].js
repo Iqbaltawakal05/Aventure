@@ -112,9 +112,9 @@ export default function PromoDetail() {
                 <section className="container">
                         <div className="back-buttonid">
                             <div className="d-flex gap-3">
-                                <a href="/dashboard/category"><i class="bi bi-chevron-left"></i></a>
+                                <a href="/dashboard/promo"><i class="bi bi-chevron-left"></i></a>
                                 <div>
-                                    <a href="/dashboard/category">{promo.title}</a>
+                                    <a href="/dashboard/promo">{promo.title}</a>
                                 </div>
                             </div>
                             <div className="ratingActivity">

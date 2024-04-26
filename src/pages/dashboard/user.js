@@ -25,9 +25,8 @@ export default function User() {
 
     return (
         <DashboardLayout>
-            <div className="text-center">
+            <div className="text-center mt-5">
                 <div>
-                    <h1>User</h1>
                     <div className="alluser row">
                             <div className='col-2'>
                                 <p>profile</p>

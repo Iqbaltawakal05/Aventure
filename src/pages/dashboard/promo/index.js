@@ -119,6 +119,7 @@ export default function Promo() {
                                     <h5>{promo.promo_code}</h5>
                                 </div>
                             </div>
+                            <Link href={`/dashboard/promo/${promo.id}`}><button className="activitys-button">See Detail</button></Link>
                         </div>
                     </div>
                 ))}

@@ -93,13 +93,14 @@ export default function Category() {
                 <div className="row">
                 {category.map((category) => (
                     <div className="col-md-4">
-                            <div className="card mb-4">
+                            <div className="mb-4">
                             <Link href={`/dashboard/category/${category.id}`}>
                                     <img src={category.imageUrl} className="card-img" alt="..." />
                             </Link>
                                 <div className="card-body">
                                     <h5 className="card-title">{category.name}</h5>
                                 </div>
+                            <Link href={`/dashboard/category/${category.id}`}><button className="activitys-button">See Detail</button></Link>
                             </div>
                     </div>
                 ))}
