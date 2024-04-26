@@ -3,12 +3,17 @@ import DashboardLayout from "@/Components/DashboardLayout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { UploadImg } from "@/API/UploadImgAPI";
+import { fetchAllCategoriesData } from "@/API/CategoryAPI";
 
 export default function VacationDetail() {
     const router = useRouter();
     const { id } = router.query;
     const [vacations, setVacations] = useState({});
     const [editedVacations, setEditedVacations] = useState({});
+    const [categories, setCategories] = useState([]);
+    const [showModalEdit, setShowModalEdit] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [successMessage, setSuccessMessage] = useState(null);
     const [imageFile, setImageFile] = useState(null);
 
     useEffect (() => {
@@ -20,6 +25,10 @@ export default function VacationDetail() {
         if (id) {
             fetchData();
         }
+
+        fetchAllCategoriesData().then((data) => {
+            setCategories(data);
+        });
     }, [id]);
 
     const handleInputChange = (e) => {
@@ -75,8 +84,11 @@ export default function VacationDetail() {
             };
             await updateActivity(id, VacationsData);
         }
-            router.push('/dashboard/vacations', '/');
-            router.reload()
+        setSuccessMessage("Vacations updated successfully.");
+            setTimeout(() => {
+                setSuccessMessage(null);
+                router.reload();
+            }, 2000);
         } catch (error) {
             console.error("Error updating vacations:", error);
         }
@@ -84,88 +96,216 @@ export default function VacationDetail() {
 
     const handleDelete = async () => {
         try {
-            if (confirm("Are you sure you want to delete this Vacations?")) {
                 await deleteActivity(id);
-                router.push('/dashboard/vacations', '/');
-            }
+                setSuccessMessage("vacations deleted successfully.");
+            setTimeout(() => {
+                setSuccessMessage(null);
+                router.push('/dashboard/vacations');
+            }, 2000);
         } catch (error) {
             console.error("Error deleting vacations:", error);
         }
     };
 
+    const formatPrice = (price) => {
+    if (typeof price !== 'undefined') {
+        let priceString = price.toString();
+        let priceArray = priceString.split('');
+        let formattedPrice = '';
+
+        for (let i = 0; i < priceArray.length; i++) {
+            if ((priceArray.length - i) % 3 === 0 && i !== 0) {
+                formattedPrice += '.';
+            }
+            formattedPrice += priceArray[i];
+        }
+
+        formattedPrice = 'Rp ' + formattedPrice;
+
+        return formattedPrice;
+    } else {
+        return 'Rp 0';
+    }
+    };
+
     return (
         <DashboardLayout>
-            <div className="text-center">
-                <p>{vacations.title}</p>
-                <p>{vacations.description}</p>
-                <img src={vacations.imageUrls} />
-                <p>{vacations.city}</p>
-                <p>{vacations.price}</p>
-                <p>{vacations.price_discount}</p>
-                <p>{vacations.province}</p>
-                <p>{vacations.address}</p>
-                <p>{vacations.facilities}</p>
-                <p>{vacations.rating}</p>
-                <p>{vacations.total_reviews}</p>
-                <div dangerouslySetInnerHTML={{ __html: vacations.location_maps }} />
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Edit Vacations
-                </button>
-                <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
-            </div>
+            <div className="back-buttonid">
+                        <div className="d-flex gap-3">
+                            <a href="/dashboard/vacations"><i class="bi bi-chevron-left"></i></a>
+                            <div>
+                                <a href="/dashboard/vacations">{vacations.title}</a>
+                            <div className="location-vacations">
+                                <p className="city-vacations">{vacations.city}</p>
+                                <p className="province-vacations">{vacations.province}</p>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="ratingActivity">
+                            <button type="button" className="btn btn-edit" onClick={() => setShowModalEdit(true)}>
+                                Edit Vacations
+                            </button>
+                            <button type="button" className="btn btn-delete" onClick={() => setShowModalDelete(true)}>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                        <div className='row'>
+                            <div className='imageActivityId col-md-7'>
+                                <img src={vacations.imageUrls} alt={vacations.title} />
+                            </div>
+                            <div className='col-md-5'>
+                                <p className="rating-vacations">{vacations.rating} <i className="bi bi-star-fill"></i> / {vacations.total_reviews} reviews</p>
+                        <div className="locationn">
+                                <div className="locationn d-flex gap-4 col-md-8">
+                                <i class="bi bi-geo-alt-fill"></i> 
+                                <p>{vacations.address}</p>
+                                </div>
+                            <div className="locations" dangerouslySetInnerHTML={{ __html: vacations.location_maps }} />
+                        </div>
+                        </div>
+                        <div className="row prices">
+                            <div className='col-md-6'>
+                                    <div className="bodyActivityId">
+                                    <h3>Normal price</h3>
+                                    <div className="d-flex original-prices">
+                                    <h5>{formatPrice(vacations.price)}</h5>
+                                    <h5>/person</h5>
+                                    </div>
+                                </div>
+                                <div className="bodyActivityId">
+                                    <h3>Discount price</h3>
+                                    <div className="d-flex discount-prices">
+                                    <h5>{formatPrice(vacations.price_discount)}</h5>
+                                    <h5>/person</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='bodyActivityId'>
+                                    <h3>Description</h3>
+                                    <h5>{vacations.description}</h5>
+                                    <h3>Included</h3>
+                                    <h5>{vacations.facilities}</h5>
+                                </div>
+                            </div>
+                    </div>
+                    </div>
 
-             {/* modal */}
-            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
+             {/* Edit Modal */}
+            <div className={`modal ${showModalEdit ? 'show d-block' : ''}`} tabIndex="-1" role="dialog">
+                <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Edit promo</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                            <h1 className="modal-title fs-5">Edit Promo</h1>
+                            <button type="button" className="btn-close" onClick={() => setShowModalEdit(false)} aria-label="Close" />
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="modal-body">
+                                <div className="row">
+                                <div className="col-md-4">
+                                <div className="mb-3">
+                                    <label className="form-label">Title</label>
+                                    <input type="text" className="form-control" name="title" value={editedVacations.title} onChange={handleInputChange} />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Description</label>
+                                    <textarea className="form-control" name="description" value={editedVacations.description} onChange={handleInputChange}></textarea>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Terms & Conditions</label>
+                                    <textarea className="form-control" name="terms_condition" value={editedVacations.terms_condition} onChange={handleInputChange}></textarea>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Facilities</label>
+                                    <textarea className="form-control" name="facilities" value={editedVacations.facilities} onChange={handleInputChange}></textarea>
+                                </div>
+                                </div>
+                                <div className="col-md-4">
+                                <div className="mb-3">
+                                            <label className="form-label">Price</label>
+                                            <input type="number" className="form-control" name="price" value={editedVacations.price} onChange={handleInputChange} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Discount Price</label>
+                                            <input type="number" className="form-control" name="price_discount" value={editedVacations.price_discount} onChange={handleInputChange} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Category</label>
+                                            <select className="form-select" name="categoryId" onChange={handleInputChange}>
+                                                <option value="">Select category</option>
+                                                {categories.map((category) => (
+                                                    <option key={category.id} value={category.id}>{category.name}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Rating</label>
+                                            <input type="number" className="form-control" name="rating" value={editedVacations.rating} onChange={handleInputChange} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Total Reviews</label>
+                                            <input type="number" className="form-control" name="total_reviews" value={editedVacations.total_reviews} onChange={handleInputChange} />
+                                        </div>
+                                </div>
+                                <div className="col-md-4">
+                                        <div className="mb-3">
+                                            <label className="form-label">Address</label>
+                                            <input type="text" className="form-control" name="address" value={editedVacations.address} onChange={handleInputChange} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Province</label>
+                                            <input type="text" className="form-control" name="province" value={editedVacations.province} onChange={handleInputChange} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">City</label>
+                                            <input type="text" className="form-control" name="city" value={editedVacations.city} onChange={handleInputChange} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Location Maps</label>
+                                            <input type="text" className="form-control" name="location_maps" value={editedVacations.location_maps} onChange={handleInputChange} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label className="form-label">Image</label>
+                                            <input type="file" className="form-control" name="imageUrls" onChange={handleInputChange} />
+                                            {editedVacations.imageUrls && <img src={editedVacations.imageUrls} className="mt-2" alt="Preview" style={{ maxWidth: '200px' }} />}
+                                        </div>
+                                </div>
+                                </div>
+                                {successMessage && (
+                                    <div className="alert alert-success" role="alert">
+                                        {successMessage}
+                                    </div>
+                                )}
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" onClick={() => setShowModalEdit(false)}>Close</button>
+                                <button type="submit" className="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {/* Delete Modal */}
+            <div className={`modal ${showModalDelete ? 'show d-block' : ''}`} tabIndex="-1" role="dialog">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5">Confirmation</h1>
+                            <button type="button" className="btn-close" onClick={() => setShowModalDelete(false)} aria-label="Close" />
                         </div>
                         <div className="modal-body">
-                            <form onSubmit={handleSubmit}>
-                                <label>Title:
-                                    <input type="text" name="title" value={editedVacations.title} onChange={handleInputChange} />
-                                </label>
-                                <label>Description:
-                                    <input type="text" name="description" value={editedVacations.description} onChange={handleInputChange} />
-                                </label>
-                                <label>image:
-                                    <input type="file" id="imageUrl" name="imageUrls" onChange={handleInputChange} /><br />
-                                    {editedVacations.imageUrls && <img src={editedVacations.imageUrls} alt="Preview" style={{ maxWidth: '200px' }} />}
-                                </label>
-                                <label>Price:
-                                    <input type="number" name="price" value={editedVacations.price} onChange={handleInputChange} />
-                                </label>
-                                <label>Discount:
-                                    <input type="number" name="price_discount" value={editedVacations.price_discount} onChange={handleInputChange} />
-                                </label>
-                                <label>Rating:
-                                    <input type="number" name="rating" value={editedVacations.rating} onChange={handleInputChange} />
-                                </label>
-                                <label>totalReviews:
-                                    <input type="number" name="total_reviews" value={editedVacations.total_reviews} onChange={handleInputChange} />
-                                </label>
-                                <label>Facilities:
-                                    <input type="text" name="facilities" value={editedVacations.facilities} onChange={handleInputChange} />
-                                </label>
-                                <label>Address:
-                                    <input type="text" name="address" value={editedVacations.address} onChange={handleInputChange} />
-                                </label>
-                                <label>Province:
-                                    <input type="text" name="province" value={editedVacations.province} onChange={handleInputChange} />
-                                </label>
-                                <label>City:
-                                    <input type="text" name="city" value={editedVacations.city} onChange={handleInputChange} />
-                                </label>
-                                <label>locationMaps:
-                                     <input type="text" name="location_maps" value={editedVacations.location_maps} onChange={handleInputChange} />
-                                </label>
-                            </form>
+                            <p>Are you sure you want to delete this Vacations?</p>
                         </div>
+                        {successMessage && (
+                            <div className="alert alert-success" role="alert">
+                                {successMessage}
+                            </div>
+                        )}
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Save changes</button>
+                            <button type="button" className="btn btn-secondary" onClick={() => setShowModalDelete(false)}>Cancel</button>
+                            <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
                         </div>
                     </div>
                 </div>
