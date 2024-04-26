@@ -1,10 +1,12 @@
-import { fetchAllPromoData, createPromo } from '@/API/PromoAPI'; // Import createPromo
+import { fetchAllPromoData, createPromo } from '@/API/PromoAPI';
 import { UploadImg } from '@/API/UploadImgAPI';
 import DashboardLayout from "@/Components/DashboardLayout";
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useEffect, useState } from "react";
 
 export default function Promo() {
+    const router = useRouter();
     const [promos, setPromos] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [successMessage, setSuccessMessage] = useState(null);
@@ -85,8 +87,8 @@ export default function Promo() {
             setSuccessMessage('Promo created successfully.');
             setTimeout(() => {
                 setSuccessMessage(null);
-                window.location.reload()
-            }, 3000);
+                router.reload()
+            }, 2000);
         } catch (error) {
             console.error('Error creating promo:', error);
             setErrorMessage('Error creating promo. Please try again.');
