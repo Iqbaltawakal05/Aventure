@@ -42,24 +42,29 @@ export default function PromoDetail() {
         }
     };
 
-    const handleSubmit = async () => {
-            
-        try {
+   const handleSubmit = async () => {
+    try {
+        if (imageFile) {
             const uploadResponse = await UploadImg(imageFile);
             const imageUrl = uploadResponse.data.url;
             const bannerData = {
                 name: editedBanner.name,
                 imageUrl: imageUrl,
             };
-
             await updateBanner(id, bannerData);
-            router.push('/dashboard/banner', '/');
-            router.reload()
-        } catch (error) {
-            console.error("Error updating banner:", error);
+        } else {
+            const bannerData = {
+                name: editedBanner.name,
+                imageUrl: editedBanner.imageUrl,
+            };
+            await updateBanner(id, bannerData);
         }
+        router.push('/dashboard/banner', '/');
+        router.reload()
+    } catch (error) {
+        console.error("Error updating banner:", error);
+    }
     };
-
     const handleDelete = async () => {
     try {
         if (confirm("Are you sure you want to delete this Banner?")) {

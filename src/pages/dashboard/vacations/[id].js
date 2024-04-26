@@ -40,6 +40,7 @@ export default function VacationDetail() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            if(imageFile) {
             const uploadResponse = await UploadImg(imageFile);
             const imageUrl = uploadResponse.data.url;
             const VacationsData = {
@@ -57,6 +58,23 @@ export default function VacationDetail() {
                 location_maps: editedVacations.location_maps
             };
             await updateActivity(id, VacationsData);
+        } else {
+            const VacationsData = {
+                title: editedVacations.title,
+                description: editedVacations.description,
+                imageUrls: editedVacations.imageUrls,
+                price: editedVacations.price,
+                price_discount: editedVacations.price_discount,
+                rating: editedVacations.rating,
+                total_reviews: editedVacations.total_reviews,
+                facilities: editedVacations.facilities,
+                address: editedVacations.address,
+                province: editedVacations.province,
+                city: editedVacations.city,
+                location_maps: editedVacations.location_maps
+            };
+            await updateActivity(id, VacationsData);
+        }
             router.push('/dashboard/vacations', '/');
             router.reload()
         } catch (error) {

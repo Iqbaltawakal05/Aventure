@@ -45,14 +45,21 @@ export default function PromoDetail() {
 
     const handleSubmit = async () => {
         try {
+            if(imageFile) {
             const uploadResponse = await UploadImg(imageFile);
             const imageUrl = uploadResponse.data.url;
             const categoryData = {
                 name: editedCategory.name,
                 imageUrl: imageUrl,
             };
-
             await updateCategory(id, categoryData);
+        } else {
+            const categoryData = {
+                name: editedCategory.name,
+                imageUrl: editedCategory.imageUrl,
+            };
+            await updateCategory(id, categoryData);
+            }
             router.push('/dashboard/category', '/');
             router.reload()
         } catch (error) {
