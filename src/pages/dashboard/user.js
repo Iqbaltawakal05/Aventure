@@ -4,6 +4,10 @@ import DashboardLayout from '@/Components/DashboardLayout';
 
 export default function User() {
     const [userData, setUserData] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const cardsPerPage = 6;
+    const totalPages = userData ? Math.ceil(userData.data.length / cardsPerPage) : 0;
+    const pageNumbers = [];
 
     useEffect(() => {
         async function fetchData() {
@@ -17,6 +21,10 @@ export default function User() {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [currentPage]);
+
     const handleEditClick = async (userId, newRole) => {
         try {
             await updateUserRole(userId, newRole);
@@ -27,10 +35,30 @@ export default function User() {
         }
     };
 
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+
+    const nextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handleClick = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
     return (
         <DashboardLayout>
             <div className="row">
-                {userData && userData.data && userData.data.map((user, index) => (
+                {userData && userData.data && userData.data.slice((currentPage - 1) * cardsPerPage, currentPage * cardsPerPage).map((user, index) => (
                     <div className="col-md-4" key={user.id}>
                         <div className="card mb-4 mt-5">
                             <img src={user.profilePictureUrl} className="card-img" alt={`${user.name} profile`} />
@@ -54,6 +82,34 @@ export default function User() {
                     </div>
                 ))}
             </div>
+
+            {/* Paginations */}
+            <nav>
+                <ul className="pagination justify-content-center">
+                    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                        <button className="page-link" onClick={prevPage}>Prev</button>
+                    </li>
+                    {pageNumbers.map((number, index) => {
+                        if (number === 1 || number === totalPages || (number >= currentPage - 1 && number <= currentPage + 1)) {
+                            return (
+                                <li key={index} className={`page-item ${currentPage === number ? 'active' : ''}`}>
+                                    <button className="page-link" onClick={() => handleClick(number)}>{number}</button>
+                                </li>
+                            );
+                        } else if (number === currentPage - 2 || number === currentPage + 2) {
+                            return (
+                                <li key={index} className="page-item">
+                                    <button className="page-link">...</button>
+                                </li>
+                            );
+                        }
+                        return null;
+                    })}
+                    <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                        <button className="page-link" onClick={nextPage}>Next</button>
+                    </li>
+                </ul>
+            </nav>
         </DashboardLayout>
     );
 }
