@@ -7,13 +7,17 @@ export default function User() {
 
     useEffect(() => {
         async function fetchData() {
-            const data = await fetchAllUserData();
-            setUserData(data);
+            try {
+                const data = await fetchAllUserData();
+                setUserData(data);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
         }
         fetchData();
     }, []);
 
-     const handleEditClick = async (userId, newRole) => {
+    const handleEditClick = async (userId, newRole) => {
         try {
             await updateUserRole(userId, newRole);
             const updatedData = await fetchAllUserData();
@@ -25,42 +29,19 @@ export default function User() {
 
     return (
         <DashboardLayout>
-            <div className="text-center mt-5">
-                <div>
-                    <div className="alluser row">
-                            <div className='col-2'>
-                                <p>profile</p>
-                            </div>
-                            <div className="col-1">
-                                <p>name</p>
-                            </div>
-                            <div className='col-3'>
-                            <p>email</p>
-                            </div>
-                            <div className='col-2'>
-                            <p>role</p>
-                            </div>
-                            <div className='col-3'>
-                            <p>action</p>
-                            </div>
-                        </div>
-                     {userData && userData.data && userData.data.map((user, index) => (
-                        <div className="alluser row" key={index}>
-                            <div className='col-2'>
-                                <img src={user.profilePictureUrl} alt={`${user.name} profile`}/>
-                            </div>
-                            <div className="col-1">
-                                <p>{user.name}</p>
-                            </div>
-                            <div className='col-3'>
-                            <p>{user.email}</p>
-                            </div>
-                            <div className='col-2'>
-                            <p>{user.role}</p>
-                            </div>
-                            <div className='col-3'>
+            <div className="row">
+                {userData && userData.data && userData.data.map((user, index) => (
+                    <div className="col-md-4" key={user.id}>
+                        <div className="card mb-4 mt-5">
+                            <img src={user.profilePictureUrl} className="card-img" alt={`${user.name} profile`} />
+                            <div className="card-body">
+                                <h5 className="card-title">{user.name}</h5>
+                                <div className="location-vacations">
+                                    <p className="city-vacations">{user.email}</p>
+                                    <p className="province-vacations">{user.role}</p>
+                                </div>
                                 <div className="dropdown">
-                                    <button className="btn btn-secondary dropdown-toggle" type="button" id={`dropdownMenuButton-${index}`} data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button className="btn btn-success dropdown-toggle" type="button" id={`dropdownMenuButton-${index}`} data-bs-toggle="dropdown" aria-expanded="false">
                                         Edit role
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby={`dropdownMenuButton-${index}`}>
@@ -70,8 +51,8 @@ export default function User() {
                                 </div>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
         </DashboardLayout>
     );
