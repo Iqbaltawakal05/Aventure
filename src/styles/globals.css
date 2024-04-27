@@ -893,7 +893,7 @@ header {
 .repeatpassword-toggle {
   position: absolute;
   top: 50%;
-  right: 120px;
+  right: 110px;
   transform: translateY(140%);
   background-color: transparent;
   border: none;
@@ -954,10 +954,8 @@ header {
   background-color: red;
 }
 
-/* CSS untuk modal */
 .modal {
   display: none;
-  /* Semula modal disembunyikan */
   position: fixed;
   z-index: 999;
   left: 0;
@@ -987,6 +985,23 @@ header {
 
 .modal-body {
   padding: 20px 0;
+}
+
+.dashboard-layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 350px;
+  flex: 0 0 auto;
+}
+
+.content {
+  flex: 1;
+}
+
+.toggle-button {
+  display: none;
 }
 
 
@@ -1025,7 +1040,7 @@ header {
   width: 65vw;
   height: 7vh;
   margin-top: 26.5vh;
-  margin-left: 18vw;
+  margin-left: 15.6vw;
 }
 
 .links-item a{
@@ -1105,6 +1120,89 @@ header {
 .rating-vacations i {
   font-size: 2vh;
   color: #ff5b00;
+}
+
+.password-toggle {
+  right: 123px;
+}
+
+.repeatpassword-toggle {
+  right: 123px;
+}
+
+.toggle-button {
+  display: block;
+  margin-left: 85vw;
+  background-color: #f1f2f7;
+  position: absolute;
+}
+
+.nav-links {
+  display: none;
+  background-color: rgb(241, 242, 247);
+  margin-top: 9vh;
+}
+
+.nav-links.show {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashnav {
+  background-color: #f1f2f7;
+  color: white;
+  width: 100%;
+  height: 12vh;
+  position: fixed;
+  text-align: start;
+  top: 0;
+  left: 10;
+  padding-top: 20px;
+}
+
+.profiles {
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  margin-left: 3vh;
+}
+
+
+.dashnav button {
+  font-size: 4vw;
+}
+
+.dashnav-brand {
+  top: 1px;
+  font-size: 4vh;
+  font-weight: bold;
+  text-align: start;
+  color: #878d96;
+  position: absolute;
+  margin-left: 20px;
+}
+
+.dashnav-brand span {
+  color: #31bd7b;
+}
+
+.dassv{
+  display:flex;
+  justify-content: space-between;
+}
+
+.dash-link.active {
+  background-color: #e4e7f4;
+  border-radius: 10px;
+  color: #31bd7b;
+}
+
+.dashboard-layout {
+    flex-direction: column;
+}
+
+.sidebar {
+    width: 100%;
+    height: 80px;
 }
 
 }

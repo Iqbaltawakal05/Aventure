@@ -3,11 +3,11 @@ import Dashboardnavbar from "./DashboardNav";
 export default function DashboardLayout({ children }) {
     return (
 
-        <div className="text-center row">
-            <div className="col-3">
+        <div className="dashboard-layout">
+            <div className="sidebar">
             <Dashboardnavbar />
             </div>
-            <div className="col-9">
+            <div className="content">
             {children}
             </div>
         </div>
