@@ -1,8 +1,23 @@
 import { LogoutData } from "@/API/AuthAPI";
 import React, { useEffect, useState } from "react";
+import { loggedUserData } from '@/API/UserAPI';
 
 export default function Dashboardnavbar() {
     const [activePage, setActivePage] = useState("");
+    const [loggeduser, setloggeduser] = useState(null);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const LoggedUser = await loggedUserData();
+                setloggeduser(LoggedUser);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+        
+        fetchData();
+    }, []);
 
      useEffect(() => {
         setActivePage(window.location.pathname);
@@ -23,7 +38,15 @@ export default function Dashboardnavbar() {
             <a className={`dash-link nav-link ${activePage === "/dashboard/promo" ? "active" : ""}`} href="/dashboard/promo"><i class="bi bi-percent"></i> Promo</a>
             <a className={`dash-link nav-link ${activePage === "/dashboard/category" ? "active" : ""}`} href="/dashboard/category"><i class="bi bi-bookmarks-fill"></i> Category</a>
             <a className={`dash-link nav-link ${activePage === "/dashboard/vacations" ? "active" : ""}`} href="/dashboard/vacations"><i class="bi bi-suitcase-fill"></i> Vacations</a>
-                <button className="nav-link" onClick={handleLogout}><i class="bi bi-box-arrow-left"></i> Logout</button>
+            <div className='profiles'>
+            {loggeduser && (
+                <div className='profileNav'>
+                    <img src={loggeduser.profilePictureUrl} alt="profile picture" />
+                    <a href='/profile'>{loggeduser.name}</a>
+                </div>
+            )}
+            <button onClick={handleLogout}><i class="bi bi-box-arrow-left"></i> Logout</button>
+            </div>
         </div>
     );
 }

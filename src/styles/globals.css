@@ -649,6 +649,19 @@ header {
   padding-top: 20px;
 }
 
+.profiles{
+  justify-content: space-between;
+  margin-top: 35vh;
+}
+
+
+.dashnav button{
+  font-size: 1.5vw;
+  color: #878d96;
+  border: none;
+  margin-top: 1vh;
+}
+
 .dashnav-brand {
   font-size: 5vh;
   font-weight: bold;
@@ -705,24 +718,38 @@ header {
 .prolifenavb{
   padding: 1rem;
   display: flex;
-  justify-content: end;
-  margin-right: 2vw;
+  background-color: #f1f2f7;
 }
 
 .profileNav img{
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
   border-radius: 50%;
   margin-right: 1vw
 }
 
 .profileNav a{
-  color: #000000;
+  color: #878d96;
   text-decoration: none;
   font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
   font-weight: lighter;
   font-size: 20px;
+}
+
+.img-profile img{
+  margin-left: 15vw;
+  width: 30vw;
+  height: 30vw;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.body-profile h3{
+  color: #31bd7b;
+  font-family: AmsiPro-Regular, AmsiPro-Light, AmsiPro-XLight, sans-serif;
+  margin-bottom: 3vh;
+  margin-top: 7vh;
 }
 
 .imageActivityId img{
@@ -856,7 +883,7 @@ header {
 .password-toggle {
   position: absolute;
   top: 50%;
-  right: 120px;
+  right: 110px;
   transform: translateY(-110%);
   background-color: transparent;
   border: none;
@@ -927,6 +954,41 @@ header {
   background-color: red;
 }
 
+/* CSS untuk modal */
+.modal {
+  display: none;
+  /* Semula modal disembunyikan */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 20px 0;
+}
+
 
 @media screen and (max-width: 700px) {
   .login-page img {
@@ -942,5 +1004,107 @@ header {
     height: auto;
     margin-bottom: 20px;
   }
+
+  .headerImg img {
+  position: absolute;
+  width: 85vw;
+  height: 30vh;
+  z-index: -1;
+  object-fit: cover;
+  border-radius: 24px;
+  justify-content: center;
+}
+
+  .navbar-brand {
+  font-size: 6vw;
+  margin-top: 2vh;
+  color: #098d62;
+}
+
+.links{
+  width: 65vw;
+  height: 7vh;
+  margin-top: 26.5vh;
+  margin-left: 18vw;
+}
+
+.links-item a{
+  color: #000000;
+  font-size: 2.9vw;
+  margin-left: 0px;
+  font-weight: bold;
+}
+
+.Country-links{
+  padding-right: 10px;
+}
+
+.Offer-links{
+  padding-right: 10px;
+  padding-left: 10px;
+  border-right: 1px solid #e7e7e7;
+  border-left: 1px solid #e7e7e7;
+}
+
+.Vacations-links{
+  padding-left: 10px;
+}
+
+.Country-link i{
+  display: none;
+}
+
+.Offer-link i{
+  display: none;
+}
+
+
+.Vacations-link i {
+  display: none;
+}
+
+.card-body p {
+  font-size: 4vw;
+}
+
+.card-promos h5 {
+  font-size: 6vw !important;
+}
+
+.code-promo {
+  font-size: 4vw;
+}
+
+.back-button i {
+  font-size: 5vw;
+}
+
+.back-button a {
+  font-size: 5vw;
+}
+
+.back-buttonid i {
+  font-size: 5vw;
+  color: #434343;
+}
+
+.back-buttonid a {
+  font-size: 5vw;
+  color: #434343;
+  text-decoration: none;
+}
+
+.bodyActivityId h5 {
+  font-size: 20px;
+}
+
+.ratingActivity p {
+  font-size: 2vw;
+}
+
+.rating-vacations i {
+  font-size: 2vh;
+  color: #ff5b00;
+}
 
 }
