@@ -148,7 +148,7 @@ export default function Vacations() {
             )}
                 <div className="form-selecttt container">
                     <div>
-                    <button type="button" className="btn btn-primary" onClick={() => setShowModal(true)}>
+                    <button type="button" className="btn Create" onClick={() => setShowModal(true)}>
                     Create vacations
                     </button>
                     </div>
@@ -184,7 +184,7 @@ export default function Vacations() {
                         ))
                     ) : (
                         <div className="col-md-12">
-                            <p>No activities found</p>
+                            <p>No vacations found</p>
                         </div>
                     )}
             </div>
@@ -194,11 +194,11 @@ export default function Vacations() {
                 <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5">Create Activity</h1>
+                            <h1 className="modal-title fs-5">Create Vacations</h1>
                             <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close" />
                         </div>
                         <form onSubmit={handleSubmit}>
-                            <div className="modal-body">
+                            <div className="modal-body text-center">
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="mb-3">
@@ -276,7 +276,7 @@ export default function Vacations() {
                                 )}
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary">Create</button>
+                                <button type="submit" className="btn Create">Create</button>
                             </div>
                         </form>
                     </div>

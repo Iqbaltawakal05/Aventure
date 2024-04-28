@@ -78,9 +78,9 @@ const handleSubmit = async () => {
                 <div className='container'>
                     <div className="back-buttonid">
                     <div className="d-flex gap-3">
-                        <Link href="/dashboard"><i className="bi bi-chevron-left"></i></Link>
+                        <Link href="/dashboard/user"><i className="bi bi-chevron-left"></i></Link>
                         <div>
-                            <Link href="/dashboard">{loggedUser.name}</Link>
+                            <Link href="/dashboard/user">{loggedUser.name}</Link>
                         </div>
                     </div>
                     <div className="ratingActivity">
@@ -126,8 +126,7 @@ const handleSubmit = async () => {
                                 {editedProfile.profilePictureUrl && <img src={editedProfile.profilePictureUrl} alt="Preview" style={{ maxWidth: '200px' }} />}
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>Close</button>
-                                <button type="button" className="btn btn-primary" onClick={handleSubmit}>Save changes</button>
+                                <button type="button" className="btn Create" onClick={handleSubmit}>Save changes</button>
                             </div>
                         </div>
                     </div>

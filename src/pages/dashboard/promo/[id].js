@@ -223,8 +223,7 @@ export default function PromoDetail() {
                                 )}
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={() => setShowModalEdit(false)}>Close</button>
-                                <button type="submit" className="btn btn-primary">Save changes</button>
+                                <button type="submit" className="btn Create">Save changes</button>
                             </div>
                         </form>
                     </div>

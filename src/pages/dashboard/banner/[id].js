@@ -135,7 +135,7 @@ export default function PromoDetail() {
                                 )}
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary">Save changes</button>
+                                <button type="submit" className="btn Create">Save changes</button>
                             </div>
                         </form>
                     </div>

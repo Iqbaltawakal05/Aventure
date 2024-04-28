@@ -201,7 +201,7 @@ export default function VacationDetail() {
                             <button type="button" className="btn-close" onClick={() => setShowModalEdit(false)} aria-label="Close" />
                         </div>
                         <form onSubmit={handleSubmit}>
-                            <div className="modal-body">
+                            <div className="modal-body text-center">
                                 <div className="row">
                                 <div className="col-md-4">
                                 <div className="mb-3">
@@ -279,8 +279,7 @@ export default function VacationDetail() {
                                 )}
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={() => setShowModalEdit(false)}>Close</button>
-                                <button type="submit" className="btn btn-primary">Save changes</button>
+                                <button type="submit" className="btn Create">Save changes</button>
                             </div>
                         </form>
                     </div>

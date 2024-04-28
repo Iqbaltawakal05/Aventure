@@ -89,7 +89,7 @@ export default function Category() {
                 </div>
             )}
                 <div className='form-selecttt'>
-                <button type="button" className="btn btn-primary" onClick={() => setShowModal(true)}>
+                <button type="button" className="btn Create" onClick={() => setShowModal(true)}>
                     Create Category
                 </button>
                 </div>
@@ -135,7 +135,7 @@ export default function Category() {
                                 )}
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary">Create</button>
+                                <button type="submit" className="btn Create">Create</button>
                             </div>
                         </form>
                     </div>
