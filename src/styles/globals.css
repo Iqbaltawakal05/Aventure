@@ -4,29 +4,25 @@ body {
 /* Navbar */
 
 .navbar {
-  padding: 1vw;
   display: flex;
-  justify-content: space-between;
   font-weight: bold;
-}
-
-.navbar.transparent {
-  background-color: transparent;
-}
-
-.navbar.scrolled {
   position: sticky;
-  background-color: #ffffff;
-  border-bottom: 3px solid #efefef;
   top: 0;
   z-index: 10;
-  transition: background-color 0.3s ease;
+  background-color: #ffffff;
+}
+
+.navbar-brand {
+  font-size: 3vw;
+  margin-top: 2vh;
+  color: #098d62;
 }
 
 .additional-info {
   display: flex;
-  margin-top: 2vh;
-  margin-right: 10vw;
+  margin-top: 3vh;
+  margin-right: 23vw;
+  margin-left: 17vw;
 }
 
 .additional-info a {
@@ -42,11 +38,6 @@ body {
   text-decoration: underline;
 }
 
-.navbar-brand {
-  font-size: 3vw;
-  margin-top: 2vh;
-  color: #098d62;
-}
 
 .nav-link {
   color: #000000;
@@ -991,6 +982,28 @@ header {
     width: 120px;
 }
 
+.page-link{
+  color: #098d62;
+  
+}
+
+.page-link:hover{
+  color: white;
+  background-color: #098d62;
+}
+
+.page-item.active .page-link {
+  background-color : #098d62;
+  border-color: #098d62;
+}
+
+.card{
+  position: static;
+}
+
+.dropdown {
+  position: static
+}
 
 @media screen and (max-width: 700px) {
   .login-page img {
@@ -1194,6 +1207,54 @@ header {
 
 .card-img {
   min-height: 50vh;
+}
+
+.navbar-brand{
+  margin-bottom: 17px;
+}
+
+.additional-info {
+  flex-direction: column;
+  margin-left: 0vw;
+  margin-top: 0;
+}
+
+.additional-info a {
+  margin-top: 20px;
+}
+
+.nav-link {
+  color: #000000;
+  font-size: 20px;
+  margin-top: 2vh;
+}
+
+.auth-nav {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px
+}
+
+.nav-login {
+  gap: 1vw;
+  border-right: none;
+  padding: 0px;
+  padding-right: 0vw;
+  color: #098d62;
+  font-weight: bold;
+}
+
+.nav-register {
+  gap: 1vw;
+  padding: 0px;
+  padding-left: 0vw;
+  color: #098d62;
+  font-weight: bold;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+  color: #31bd7b;
 }
 
 }

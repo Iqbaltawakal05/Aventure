@@ -34,7 +34,7 @@ export default function Login() {
             if(localStorage.getItem("token")) {
                 dispatch(showNotification('Login successful'));
                 setTimeout(() => {
-                    window.location.href = "/dashboard";
+                    window.location.href = "/dashboard/user";
                 }, 1000);
             }
         } catch (error) {

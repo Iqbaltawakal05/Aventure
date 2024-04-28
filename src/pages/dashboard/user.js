@@ -85,9 +85,9 @@ export default function User() {
 
             {/* Paginations */}
             <nav>
-                <ul className="pagination justify-content-center">
+                <ul className="pagination justify-content-center mt-5 mb-5">
                     <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                        <button className="page-link" onClick={prevPage}>Prev</button>
+                        <button className="page-link" onClick={prevPage}><i className="bi bi-caret-left-fill"></i></button>
                     </li>
                     {pageNumbers.map((number, index) => {
                         if (number === 1 || number === totalPages || (number >= currentPage - 1 && number <= currentPage + 1)) {
@@ -106,7 +106,7 @@ export default function User() {
                         return null;
                     })}
                     <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                        <button className="page-link" onClick={nextPage}>Next</button>
+                        <button className="page-link" onClick={nextPage}><i className="bi bi-caret-right-fill"></i></button>
                     </li>
                 </ul>
             </nav>
