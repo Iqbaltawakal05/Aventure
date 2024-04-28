@@ -42,7 +42,6 @@ async function loggedUserData() {
                 Authorization: `bearer ${localStorage.getItem('token')}`,
             }
         });
-        console.log(response.data)
         return response.data.data;
     } catch (error) {
         console.error('Error fetching user data:', error);
@@ -59,7 +58,6 @@ async function updateProfile(profileData) {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(response.data)
         return response.data;
     } catch (error) {
         console.error('Error updating promo:', error);

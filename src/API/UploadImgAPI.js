@@ -1,4 +1,5 @@
 import axios from "axios";
+import BASE_URL from '@/API/baseURL';
 
 async function UploadImg(imageFile) {
     try {
@@ -6,7 +7,7 @@ async function UploadImg(imageFile) {
         const formData = new FormData();
         formData.append('image', imageFile);
 
-        const response = await axios.post(` https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/upload-image`, 
+        const response = await axios.post(`${BASE_URL}/api/v1/upload-image`, 
         formData,
         {
             headers: {
@@ -16,7 +17,6 @@ async function UploadImg(imageFile) {
             }
         });
 
-        console.log(response);
         return response;
     } catch (error) {
         console.error('Error fetching upload data:', error);

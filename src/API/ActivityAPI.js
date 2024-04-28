@@ -56,7 +56,6 @@ async function deleteActivity(id) {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             }
         });
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error('Error updating promo:', error);

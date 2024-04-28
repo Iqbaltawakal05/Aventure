@@ -1,8 +1,9 @@
 import axios from "axios";
+import BASE_URL from '@/API/baseURL';
 
 async function LoginData(email, password) {
     try {
-        const res = await axios.post('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/login',
+        const res = await axios.post(`${BASE_URL}/api/v1/login`,
         {
             email,
             password,
@@ -15,7 +16,6 @@ async function LoginData(email, password) {
         });
 
         localStorage.setItem('token', res.data.token);
-        console.log(res);
 
         } catch (error) {
             console.error('Error fetching user data:', error);
@@ -25,7 +25,7 @@ async function LoginData(email, password) {
 
 async function LogoutData() {
     try {
-        const res = await axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/logout',
+        const res = await axios.get(`${BASE_URL}/api/v1/logout`,
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -44,7 +44,7 @@ async function LogoutData() {
 
 async function RegisterData(name, email, password, passwordRepeat) {
     try {
-        const res = await axios.post('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/register', 
+        const res = await axios.post(`${BASE_URL}/api/v1/register`, 
         {
             name,
             email,
@@ -61,7 +61,6 @@ async function RegisterData(name, email, password, passwordRepeat) {
             }
         });
 
-        console.log(res.data)
     }
         catch (error) {
             console.log(error);

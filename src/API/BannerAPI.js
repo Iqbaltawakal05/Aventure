@@ -1,8 +1,9 @@
 import axios from "axios";
+import BASE_URL from '@/API/baseURL';
 
 async function fetchAllBannersData() {
     try {
-        const response = await axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/banners', 
+        const response = await axios.get(`${BASE_URL}/api/v1/banners`, 
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -16,7 +17,7 @@ async function fetchAllBannersData() {
 
 async function fetchBannerById(id) {
     try {
-        const response = await axios.get(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/banner/${id}`,
+        const response = await axios.get(`${BASE_URL}/api/v1/banner/${id}`,
         {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -30,7 +31,7 @@ async function fetchBannerById(id) {
 
 async function updateBanner(id, bannerData) {
     try {
-        const response = await axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${id}`, bannerData, {
+        const response = await axios.post(`${BASE_URL}/api/v1/update-banner/${id}`, bannerData, {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -45,7 +46,7 @@ async function updateBanner(id, bannerData) {
 
 async function deleteBanner(id) {
     try {
-        const response = await axios.delete(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${id}`,
+        const response = await axios.delete(`${BASE_URL}/api/v1/delete-banner/${id}`,
          {
             headers: {
                 apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
@@ -61,7 +62,7 @@ async function deleteBanner(id) {
 async function createBanner(formData) {
     try {
         const response = await axios.post(
-            `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-banner`,
+            `${BASE_URL}/api/v1/create-banner`,
             formData,
             {
                 headers: {
