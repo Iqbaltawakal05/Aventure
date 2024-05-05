@@ -962,7 +962,8 @@ header {
 }
 
 .content {
-  flex: 1;
+  flex: auto 0 1;
+  padding: 20px;
 }
 
 .toggle-button {

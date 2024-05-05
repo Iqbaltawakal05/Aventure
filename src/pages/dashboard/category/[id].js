@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import DashboardLayout from "@/Components/DashboardLayout";
 import { deleteCategory, fetchCategoryById, updateCategory } from "@/API/CategoryAPI";
 import { UploadImg } from '@/API/UploadImgAPI';
+import category from './../../category/index';
 
 export default function PromoDetail() {
     const router = useRouter();
@@ -103,7 +104,7 @@ export default function PromoDetail() {
                     </div>
                     <div className="ratingActivity">
                         <button type="button" className="btn btn-edit" onClick={() => setShowModalEdit(true)}>
-                            Edit category
+                            Edit
                         </button>
                         <button type="button" className="btn btn-delete" onClick={() => setShowModalDelete(true)}>
                             Delete
@@ -120,7 +121,7 @@ export default function PromoDetail() {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5">Edit Category</h1>
+                            <h1 className="modal-title fs-5">Edit category</h1>
                             <button type="button" className="btn-close" onClick={() => setShowModalEdit(false)} aria-label="Close" />
                         </div>
                         <form onSubmit={handleSubmit}>

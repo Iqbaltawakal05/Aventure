@@ -97,7 +97,7 @@ export default function PromoDetail() {
                     </div>
                     <div className="ratingActivity">
                         <button type="button" className="btn btn-edit" onClick={() => setShowModalEdit(true)}>
-                            Edit banner
+                            Edit
                         </button>
                         <button type="button" className="btn btn-delete" onClick={() => setShowModalDelete(true)}>
                             Delete
@@ -114,7 +114,7 @@ export default function PromoDetail() {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5">Edit Banner</h1>
+                            <h1 className="modal-title fs-5">Edit banner</h1>
                             <button type="button" className="btn-close" onClick={() => setShowModalEdit(false)} aria-label="Close" />
                         </div>
                         <form onSubmit={handleSubmit}>

@@ -143,7 +143,7 @@ export default function VacationDetail() {
                         </div>
                         <div className="ratingActivity">
                             <button type="button" className="btn btn-edit" onClick={() => setShowModalEdit(true)}>
-                                Edit Vacations
+                                Edit
                             </button>
                             <button type="button" className="btn btn-delete" onClick={() => setShowModalDelete(true)}>
                                 Delete
@@ -197,7 +197,7 @@ export default function VacationDetail() {
                 <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5">Edit Promo</h1>
+                            <h1 className="modal-title fs-5">Edit vacations</h1>
                             <button type="button" className="btn-close" onClick={() => setShowModalEdit(false)} aria-label="Close" />
                         </div>
                         <form onSubmit={handleSubmit}>
@@ -312,4 +312,3 @@ export default function VacationDetail() {
         </DashboardLayout>
     )
 }
-
